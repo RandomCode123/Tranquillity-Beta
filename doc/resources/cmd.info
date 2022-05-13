@@ -1,0 +1,9 @@
+### Tranquillity Command Prameter Help ###
+Usage: tranquillity [option ...] [file]
+Detailed:
+option:
+	Nothing: Compile the source code and run it.
+	-c Only compile source code files as bytecode files.
+	-r Run bytecode.
+	-d Compile the source code file and run it in debug mode.
+	-i Run bytecode without printing any information specified by the program.

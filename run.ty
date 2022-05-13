@@ -1,0 +1,37 @@
+package gui;
+
+import sys; // Import the system library
+
+import .elements.text as *;
+import .elements.event as *;
+import .show.window.draw as *;
+
+class Main <- . {
+	if sys->runMode == "module"
+	{
+		var window = Windows.init();
+	}elif 
+	{
+		sys->exit();	
+	}
+}
+
+class Window {
+	func this->init() {
+		var this->title = "Window";
+		var this-> width = 200; // px
+		var this->height = 100; // px
+		
+		var control;
+	}
+	func this->show(){
+		/*
+		 * Because this method has been implemented internally,
+		 * There is no need to write more here.
+		*/
+	}
+}
+
+class Label inherit    Window <- . {
+	/* It has been realized. */
+}

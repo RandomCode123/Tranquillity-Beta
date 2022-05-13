@@ -1,0 +1,14 @@
+{
+	"endSymbol": ["{", "}", ";"],
+	"keyword": ["import", "as", "class", "inherit", "func", "while", "if", "elif", "else", "var", "return", "break"],
+	"operator": {
+		"assignment": ["="],
+		"logic": [" and ", " or ", "!", "==", ">", "<", ">=", "<="],
+		"arithmetic": [
+			["<-", "->"], 
+			["**"], 
+			["*", "/"], 
+			["+", "-"]
+		]
+	}
+}
