@@ -1,6 +1,6 @@
 ## Welcome to Tranquillity Beta Page
 
-Tranquility programming language.
+Tranquility programming language.<br>
 A lightweight programming language that can be used for learning and daily use.
 
 ### Jekyll Themes
