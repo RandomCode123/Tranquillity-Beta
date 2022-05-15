@@ -1,4 +1,3 @@
-from imaplib import _CommandResults
 from compiler.ast import *
 from compiler.bytecodeCreation import *
 
@@ -67,7 +66,5 @@ class SourceCodeProcessing:
         self.sourceCode = newCode
     
     def execution(self):
-        # Function execution
         self.deleteUselessSymbol()
-
         astCreation().exxcution()
