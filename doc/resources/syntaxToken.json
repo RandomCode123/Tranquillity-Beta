@@ -1,5 +1,14 @@
 {
-	"endSymbol": ["{", "}", ";"],
+	"endSymbol": {
+		"{": {
+			"type": "codeBlock",
+			"end": "}"
+		},
+		";": {
+			"type": "sentence"
+		},
+		"priority": ["{", ";"]
+	},
 	"keyword": ["import", "as", "class", "inherit", "func", "while", "if", "elif", "else", "var", "return", "break"],
 	"operator": {
 		"assignment": ["="],
@@ -10,5 +19,6 @@
 			["*", "/"], 
 			["+", "-"]
 		]
-	}
+	},
+	"priority": []
 }
