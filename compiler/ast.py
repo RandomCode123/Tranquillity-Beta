@@ -38,6 +38,9 @@ class astCreation:
     
     def getToken(self):
         ...
+    
+    def execution(self):
+        ...
 
 class astSytnaxChecking:
     def __init__(self):

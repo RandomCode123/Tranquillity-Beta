@@ -1,10 +1,11 @@
+from imaplib import _CommandResults
 from compiler.ast import *
 from compiler.bytecodeCreation import *
 
 class SourceCodeProcessing:
     """
     * Analyze the source code, Parse source code into bytes. *
-    
+
     First, parse the code into a AST according to the syntax token.
     And now, At this time, the AST can be parsed into bytecode.
     Parse the bytecode according to AST.
@@ -26,12 +27,10 @@ class SourceCodeProcessing:
         Before parsing the source code,
         First delete the characters written by the user in the source code that are useless for parsing.
         """
-        newCode = ''
+        newCode = '' # New code after being processed
 
-        # Delete annotation
-        annotation = None
-
-        i=0
+        # Delete comments
+        comments = None; i=0
         while len(self.sourceCode) > i:
             if self.sourceCode[i] == '/' and self.sourceCode[i+1] == '/':
                 i += 2
@@ -71,4 +70,4 @@ class SourceCodeProcessing:
         # Function execution
         self.deleteUselessSymbol()
 
-        astCreation()
+        astCreation().exxcution()
