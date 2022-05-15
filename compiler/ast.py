@@ -21,15 +21,7 @@ class Tree:
     def addBranch(self, tree):
         self.branch.append(tree)
         self.branchCount += 1
-
-class Pretreatment:
-    def __init__(self, sourceCode):
-        self.pretreatmentCode = None
-        self.tree             = Tree()
-
-    def tokenCollection(self):
-        ...
-
+    
 def showTree(mainTree):
     print('=' * 20)
     print("The id of the Tree:", id(mainTree))
@@ -39,3 +31,14 @@ def showTree(mainTree):
     for i in mainTree.branch:
         print(id(i), end='')
     print("\n"+'='*20)
+
+class astCreation:
+    def __init__(self, sourceCode):
+        self.mainAst = Tree()
+    
+    def getToken(self):
+        ...
+
+class astSytnaxChecking:
+    def __init__(self):
+        ...

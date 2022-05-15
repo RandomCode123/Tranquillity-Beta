@@ -26,7 +26,7 @@ class Tranquillity(object):
 			with open("./doc/resources/cmd.info", "rt") as f:
 				self.cmdInfo = f.read()
 			
-			with open("./doc/resources/syntax.json") as f:
+			with open("./doc/resources/syntaxToken.json") as f:
 				self.syntaxInfo = loads(f.read())
 		except:
 			self.helpFileNormal = False

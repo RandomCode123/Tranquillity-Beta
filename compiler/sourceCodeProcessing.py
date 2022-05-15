@@ -1,11 +1,15 @@
-from compiler.astBuild import *
-from compiler.bytecodeBuild import *
+from compiler.ast import *
+from compiler.bytecodeCreation import *
 
 class SourceCodeProcessing:
+    """
+    * Analyze the source code, Parse source code into bytes. *
+    
+    First, parse the code into a AST according to the syntax token.
+    And now, At this time, the AST can be parsed into bytecode.
+    Parse the bytecode according to AST.
+    """
     def __init__(self, sourceCode, syntax):
-        """
-        Parse the source code.
-        """
 		# Definition and declaration of variables
         self.sourceCode = sourceCode
         # Grammatical structur
@@ -15,12 +19,13 @@ class SourceCodeProcessing:
         self.simpleAstTree = Tree()
         self.astTree       = Tree()
 		
-		# Function execution
-        self.deleteUselessSymbol()
-        self.pretreatment()
-		
     def deleteUselessSymbol(self):
-        """ Delete useless characters """
+        """
+        * Delete useless characters *
+
+        Before parsing the source code,
+        First delete the characters written by the user in the source code that are useless for parsing.
+        """
         newCode = ''
 
         # Delete annotation
@@ -54,49 +59,16 @@ class SourceCodeProcessing:
         symbol  = True # Whether the character currently processed is the character after the statement terminator.	
         for i in self.sourceCode:
             if i == ';':
-                symbol = True
+                symbol = True   
             if i != ' ' or symbol == False: 
                 newCode += i
             if i != ' ' and symbol == True: 
                 symbol = False
 
         self.sourceCode = newCode
-	
-    def pretreatment(self):
-        """
-        Source code preprocessing.
-        Simple lexical analysis of the code,
-        get specific code blocks.
-        """
-        print(self.sourceCode)
-        self.simpleAstTree.set("ROOT", "token")
+    
+    def execution(self):
+        # Function execution
+        self.deleteUselessSymbol()
 
-        pretreatmentCode = ""
-        codeBlockSymbol  = 0
-        currentLevelTree = None
-        
-        print()
-        pos = 0
-        while len(self.sourceCode) > pos:
-            if self.sourceCode[pos] == '{': 
-                codeBlockSymbol += 1
-            if self.sourceCode[pos] == '}':
-                codeBlockSymbol -= 1
-
-            if (self.sourceCode[pos] == '}' and codeBlockSymbol == 0) or (self.sourceCode[pos] == ';' and codeBlockSymbol == 0):
-                print(pretreatmentCode)
-                pretreatmentCode += self.sourceCode[pos]
-
-                currentLevelTree = Tree()
-                codeStructTree   = Tree()
-
-                codeStructTree.set(pretreatmentCode, "code")
-                currentLevelTree.set(self.sourceCode[pos], "token")
-                currentLevelTree.addBranch(codeStructTree)
-
-                pretreatmentCode = ""; pos += 1
-            else:
-                pretreatmentCode += self.sourceCode[pos]
-                pos += 1
-
-        showTree(self.simpleAstTree)
+        astCreation()
