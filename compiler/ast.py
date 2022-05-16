@@ -39,11 +39,17 @@ class astCreation:
     * Creation of a preliminary AST structure *
     
     """
-    def __init__(self, sourceCode):
+    def __init__(self, sourceCode, resources):
         self.mainAst = Tree()
     
+    def checkResourceIntegrity(self):
+        try:
+            selfendSymbol = list(self.resources["endSymbol"])
+
+            if (not )
+
     def getToken(self):
-        ...
+        
     
     def execution(self):
         ...

@@ -18,7 +18,8 @@
 			["**"], 
 			["*", "/"], 
 			["+", "-"]
-		]
+		],
+		"priority": ["assignment", "logic", "arithmetic"]
 	},
-	"priority": []
+	"priority": ["keywork", "operator"]
 }
