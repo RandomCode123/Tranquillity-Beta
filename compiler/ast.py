@@ -38,18 +38,32 @@ class astCreation:
     """
     * Creation of a preliminary AST structure *
     
+    Parse the source code into AST.
+    Token the source code through the token information.
+    Then, it is parsed step by step through the token tag.
+    Gradually improve ast from overall to detailed.
     """
     def __init__(self, sourceCode, resources):
         self.mainAst = Tree()
     
     def checkResourceIntegrity(self):
-        try:
-            selfendSymbol = list(self.resources["endSymbol"])
+        """
+        * Check resource integrity. *
 
-            if (not )
+        Check if the required resources are missing,
+        """
+        try:
+            self.endSymbolList = list(self.resources["endSymbol"])
+
+            if (not "priority" in self.endSymbolList) or (len(self.endSymbolList == 0) or (not len(self.endSymbolList)-1 == len(self.resources["endSymbol"]["priority"])):
+                    print("OSError: Lack of resource integrity.")
+                    sys.exit(0)
+        except:
+            print("OSError: Lack of resource integrity.")
+            sys.exit(0)
 
     def getToken(self):
-        
+        ... 
     
     def execution(self):
         ...
