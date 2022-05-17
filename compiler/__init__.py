@@ -1,10 +1,10 @@
 from compiler.sourceCodeProcessing import *
 
 class Compiler:
-	def __init__(self, sourceCode, syntax):
+	def __init__(self, sourceCode, syntaxInfo):
 		# Definition and declaration of variables
 		self.sourceCode = sourceCode
-		self.syntax     = syntax
+		self.syntaxInfo = syntaxInfo
 		
 		self.bytecode   = None
 		
@@ -12,4 +12,4 @@ class Compiler:
 		self.basicProcessing()
 	def basicProcessing(self):
 		""" Basic processing of source code """
-		self.bytecode = SourceCodeProcessing(self.sourceCode, self.syntax)
+		self.bytecode = SourceCodeProcessing(self.sourceCode, self.syntaxInfo).execution()

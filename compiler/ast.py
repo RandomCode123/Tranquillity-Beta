@@ -43,8 +43,11 @@ class astCreation:
     Then, it is parsed step by step through the token tag.
     Gradually improve ast from overall to detailed.
     """
-    def __init__(self, sourceCode, resources):
-        self.mainAst = Tree()
+    def __init__(self, sourceCode, syntaxInfo):
+        self.syntaxInfo = syntaxInfo
+
+        self.mainAst       = Tree()
+        self.endSymbolList = None
     
     def checkResourceIntegrity(self):
         """
@@ -53,9 +56,9 @@ class astCreation:
         Check if the required resources are missing,
         """
         try:
-            self.endSymbolList = list(self.resources["endSymbol"])
+            self.endSymbolList = list(self.syntaxInfo["endSymbol"])
 
-            if (not "priority" in self.endSymbolList) or (len(self.endSymbolList == 0) or (not len(self.endSymbolList)-1 == len(self.resources["endSymbol"]["priority"])):
+            if (not "priority" in self.endSymbolList) or (len(self.endSymbolList) == 0) or (not len(self.endSymbolList)-1 == len(self.syntaxInfo["endSymbol"]["priority"])):
                     print("OSError: Lack of resource integrity.")
                     sys.exit(0)
         except:
@@ -63,10 +66,11 @@ class astCreation:
             sys.exit(0)
 
     def getToken(self):
-        ... 
+        print(self.syntaxInfo)
     
     def execution(self):
-        ...
+        self.checkResourceIntegrity()
+        self.getToken()
 
 class astSytnaxChecking:
     def __init__(self):

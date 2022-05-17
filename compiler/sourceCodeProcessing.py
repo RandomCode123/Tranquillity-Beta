@@ -9,11 +9,11 @@ class SourceCodeProcessing:
     And now, At this time, the AST can be parsed into bytecode.
     Parse the bytecode according to AST.
     """
-    def __init__(self, sourceCode, syntax):
+    def __init__(self, sourceCode, syntaxInfo):
 		# Definition and declaration of variables
         self.sourceCode = sourceCode
         # Grammatical structur
-        self.syntax     = syntax
+        self.syntaxInfo = syntaxInfo
 		
         # AST tree struct
         self.simpleAstTree = Tree()
@@ -23,7 +23,7 @@ class SourceCodeProcessing:
         """
         * Delete useless characters *
 
-        Before parsing the source code,
+        Before parsing the sourcme code,
         First delete the characters written by the user in the source code that are useless for parsing.
         """
         newCode = '' # New code after being processed
@@ -33,17 +33,17 @@ class SourceCodeProcessing:
         while len(self.sourceCode) > i:
             if self.sourceCode[i] == '/' and self.sourceCode[i+1] == '/':
                 i += 2
-                annotation = "single"
+                comments = "single"
             elif self.sourceCode[i] == '/' and self.sourceCode[i+1] == '*':
-                annotation = "multiline"
-            elif self.sourceCode[i] == '\n' and annotation == "single":
+                comments = "multiline"
+            elif self.sourceCode[i] == '\n' and comments == "single":
                 i += 1
-                annotation = None
-            elif self.sourceCode[i] == '*' and self.sourceCode[i+1] == '/' and annotation == "multiline":
+                comments = None
+            elif self.sourceCode[i] == '*' and self.sourceCode[i+1] == '/' and comments == "multiline":
                 i += 2
-                annotation = None
+                comments = None
             
-            if annotation == None:
+            if comments == None:
                 newCode += self.sourceCode[i]
 
             i += 1
@@ -67,4 +67,4 @@ class SourceCodeProcessing:
     
     def execution(self):
         self.deleteUselessSymbol()
-        astCreation().exxcution()
+        astCreation(self.sourceCode, self.syntaxInfo).execution()
