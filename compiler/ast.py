@@ -1,3 +1,5 @@
+import sys
+
 class Tree:
     def __init__(self):
         # The code contained in the tree structure
@@ -34,6 +36,26 @@ def showTree(mainTree):
         print(id(i), end='')
     print("\n"+'='*20)
 
+class matchCharacter:
+    def __init__(self, string, targetStringList):
+        self.string           = string
+        self.targetStringList = targetStringList 
+        self.status           = {}
+    
+    def find(self):
+        __pos             = None
+        __stringMode      = False 
+        __targetStringPos = 0
+        for _i in range(len(self.string)):
+            for _elem in targetStringList:
+                if self.string[_i] == '"' or self.string[_i] == '\'':
+                    __stringMode = self.string[_i] if __stringModr == False else __stringMode = False
+                if __stringMode == False and _elem[[__targetStringPos] == self.string[_i]: 
+
+
+    def execution(self):
+        ...
+
 class astCreation:
     """
     * Creation of a preliminary AST structure *
@@ -53,25 +75,27 @@ class astCreation:
         """
         * Check resource integrity. *
 
-        Check if the required resources are missing,
+        Check if the required resources are missin.
+        Note: check the integrity of resources generally.
         """
         try:
-            self.endSymbolList = list(self.syntaxInfo["endSymbol"])
+            # Statement Terminator
+            self.endSymbolList = list(self.syntaxInfo["endSymbol"]["priority"])
 
-            if (not "priority" in self.endSymbolList) or (len(self.endSymbolList) == 0) or (not len(self.endSymbolList)-1 == len(self.syntaxInfo["endSymbol"]["priority"])):
+            if (len(self.endSymbolList) == 0) or (not len(self.endSymbolList) == len(self.syntaxInfo["endSymbol"]["symbolList"])):
                     print("OSError: Lack of resource integrity.")
                     sys.exit(0)
+
+            # 
         except:
             print("OSError: Lack of resource integrity.")
             sys.exit(0)
 
     def getToken(self):
         print(self.syntaxInfo)
+        print(self.syntaxInfo["endSymbol"])
     
     def execution(self):
         self.checkResourceIntegrity()
         self.getToken()
 
-class astSytnaxChecking:
-    def __init__(self):
-        ...
