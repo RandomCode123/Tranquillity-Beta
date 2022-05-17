@@ -32,7 +32,7 @@ class Tranquillity(object):
 			self.helpFileNormal = False
 
 		if self.helpFileNormal == False:
-			print("OSError: Lack of integrity of external resources.")
+			print("OSError5: Lack of integrity of external resources.")
 			sys.exit(0)
 	
 	def argvAnalysis(self):

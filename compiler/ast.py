@@ -39,22 +39,30 @@ def showTree(mainTree):
 class matchCharacter:
     def __init__(self, string, targetStringList):
         self.string           = string
+
         self.targetStringList = targetStringList 
-        self.status           = {}
+        self.status           = []
     
     def find(self):
-        __pos             = None
-        __stringMode      = False 
-        __targetStringPos = 0
-        for _i in range(len(self.string)):
-            for _elem in targetStringList:
-                if self.string[_i] == '"' or self.string[_i] == '\'':
-                    __stringMode = self.string[_i] if __stringModr == False else __stringMode = False
-                if __stringMode == False and _elem[[__targetStringPos] == self.string[_i]: 
+        pos             = None
+        stringMode      = False 
+        targetStringPos = 0
 
+        for i in range(len(self.string)):
+            if self.string[i] == '"' or self.string[i] == '\'':
+                stringMode = self.string[i] if stringModr == False else stringMode == False
+            if stringMode == False and _elem[targetStringPos] == self.string[i]: 
+                for j in range(len(__targetStringPos)):
+                    if targetStringPos[j] != self.string[i+j]:
+                        i += j
+                        break
+                self.status.append([i, j+len(targetStringPos)-1])
+
+        print(self.status)
 
     def execution(self):
-        ...
+        self.find()
+        return status
 
 class astCreation:
     """
@@ -78,22 +86,23 @@ class astCreation:
         Check if the required resources are missin.
         Note: check the integrity of resources generally.
         """
-        try:
-            # Statement Terminator
-            self.endSymbolList = list(self.syntaxInfo["endSymbol"]["priority"])
+        #try:
+        # Statement Terminator
+        self.endSymbolList = list(self.syntaxInfo["endSymbol"]["symbolList"])
 
-            if (len(self.endSymbolList) == 0) or (not len(self.endSymbolList) == len(self.syntaxInfo["endSymbol"]["symbolList"])):
-                    print("OSError: Lack of resource integrity.")
+        if (len(self.endSymbolList) == 0) or (not len(self.endSymbolList) == len(self.syntaxInfo["endSymbol"]["symbolList"])):
+                    print("OSError2: Lack of resource integrity.")
                     sys.exit(0)
 
             # 
-        except:
-            print("OSError: Lack of resource integrity.")
-            sys.exit(0)
+        #except:
+        #    print("OSError3: Lack of resource integrity.")
+        #    sys.exit(0)
 
     def getToken(self):
         print(self.syntaxInfo)
-        print(self.syntaxInfo["endSymbol"])
+        print(self.syntaxInfo["endSymbol"], '\n', '='*10, '\n')
+
     
     def execution(self):
         self.checkResourceIntegrity()
