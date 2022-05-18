@@ -78,6 +78,12 @@ class astCreation:
 
         self.mainAst       = Tree()
         self.endSymbolList = None
+
+        # Token
+        self.tokenType = None
+        self.tokenEnd  = None
+
+        self.tokenSign = None
     
     def checkResourceIntegrity(self):
         """
@@ -93,15 +99,19 @@ class astCreation:
         if (len(self.endSymbolList) == 0) or (not len(self.endSymbolList) == len(self.syntaxInfo["endSymbol"]["symbolList"])):
                     print("OSError2: Lack of resource integrity.")
                     sys.exit(0)
-
-            # 
         #except:
         #    print("OSError3: Lack of resource integrity.")
         #    sys.exit(0)
 
     def getToken(self):
         print(self.syntaxInfo)
-        print(self.syntaxInfo["endSymbol"], '\n', '='*10, '\n')
+        print(self.syntaxInfo["endSymbol"])
+        print(self.syntaxInfo["endSymbol"]["symbolList"])
+
+        for symbol in self.endSymbolList:
+            self.tokenType = self.syntaxInfo["endSymbol"][symbol]["type"]
+            if self.tokenType == None: self.tokenEnd  = self.syntaxInfo["endSymbol"][symbol]["end"]
+            print(self.tokenType, self.tokenEnd)
 
     
     def execution(self):
