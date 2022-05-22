@@ -63,6 +63,7 @@ class matchToken:
                     if self.targetString[j] != self.string[i+j]:
                         i += j
                         break
+                print(len(self.targetString), j, i)
                 self.status = [i, j+len(self.targetString)-1]
             
         print(self.status)
