@@ -58,6 +58,7 @@ coverage.xml
 *.swm
 *.swo
 *.swp
+*.bat
 
 # Django stuff:
 *.log
