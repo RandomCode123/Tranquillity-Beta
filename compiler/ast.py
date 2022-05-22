@@ -36,39 +36,41 @@ def showTree(mainTree):
         print(id(i), end='')
     print("\n"+'='*20)
 
-class matchToken:
+class markToken:
     """
     Find the location of the specified Token.
     This is equivalent to marking the Token.
     """
     def __init__(self, string, targetString):
         self.string           = string
-
         self.targetString     = targetString
-        self.status           = []
+
+        self.position         = [] # Location of token
     
     def find(self):
-        pos             = None
         stringMode      = False 
         targetStringPos = 0
 
         for i in range(len(self.string)):
+            # Enter string mode.
+            # In string mode, no specified token is recognized.
             if self.string[i] == '"' or self.string[i] == '\'':
                 if stringMode == False:
                     stringMode = self.string[i] 
                 else: 
                     stringMode == False
+            # Find the token and mark it if it's not in string mode.
             if stringMode == False and self.targetString[targetStringPos] == self.string[i]: 
                 for j in range(len(self.targetString)):
                     if self.targetString[j] != self.string[i+j]:
                         i += j
                         break
-                self.status = [i, i+len(self.targetString)]
+                self.position = [i, i+len(self.targetString)] # Mark the Token
                 break
 
     def execution(self):
         self.find()
-        return self.status
+        return self.position
 
 class astCreation:
     """
@@ -121,7 +123,7 @@ class astCreation:
                 self.tokenEnd  = self.syntaxInfo["endSymbol"][symbol]["end"]
 
             print(self.tokenType, self.tokenEnd)
-            print(matchToken(self.sourceCode, symbol).execution())
+            print(markToken(self.sourceCode, symbol).execution())
 
             self.tokenEnd = None
     
