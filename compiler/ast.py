@@ -50,6 +50,7 @@ class markToken:
     def find(self):
         stringMode      = False 
         targetStringPos = 0
+        print(self.string)
 
         for i in range(len(self.string)):
             # Enter string mode.
@@ -57,8 +58,8 @@ class markToken:
             if self.string[i] == '"' or self.string[i] == '\'':
                 if stringMode == False:
                     stringMode = self.string[i] 
-                else: 
-                    stringMode == False
+                elif self.string[i] == stringMode: 
+                    stringMode = False
             # Find the token and mark it if it's not in string mode.
             if stringMode == False and self.targetString[targetStringPos] == self.string[i]: 
                 for j in range(len(self.targetString)):
@@ -92,7 +93,7 @@ class astCreation:
         self.tokenType = None
         self.tokenEnd  = None
 
-        self.tokenSign = None
+        self.tokenSign = []
     
     def checkResourceIntegrity(self):
         """
@@ -113,21 +114,21 @@ class astCreation:
             sys.exit(0)
 
     def getToken(self):
-        print(self.syntaxInfo)
-        print(self.syntaxInfo["endSymbol"])
-        print(self.syntaxInfo["endSymbol"]["symbolList"])
-
         for symbol in self.endSymbolList:
             self.tokenType = self.syntaxInfo["endSymbol"][symbol]["type"]
             if self.tokenType == "codeBlock": 
                 self.tokenEnd  = self.syntaxInfo["endSymbol"][symbol]["end"]
 
             print(self.tokenType, self.tokenEnd)
-            print(markToken(self.sourceCode, symbol).execution())
+            self.tokenSign.append(markToken(self.sourceCode, symbol).execution())
+            print(self.tokenSign, self.tokenEnd)
+            if self.tokenType == "codeBlock":
+                self.tokenSign.append(markToken(self.sourceCode, self.tokenEnd).execution())
+            print(self.tokenSign)
 
-            self.tokenEnd = None
+            self.tokenEnd  = None
+            self.tokenSign = []
     
     def execution(self):
         self.checkResourceIntegrity()
         self.getToken()
-
