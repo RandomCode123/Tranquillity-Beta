@@ -64,7 +64,7 @@ class matchToken:
                         i += j
                         break
                 print(len(self.targetString), j, i)
-                self.status = [i, j+len(self.targetString)-1]
+                self.status = [i, i+len(self.targetString)-1]
             
         print(self.status)
 
@@ -123,7 +123,7 @@ class astCreation:
                 self.tokenEnd  = self.syntaxInfo["endSymbol"][symbol]["end"]
 
             print(self.tokenType, self.tokenEnd)
-            print(matchToken(self.sourceCode, self.tokenType).execution())
+            print(matchToken(self.sourceCode, symbol).execution())
 
             self.tokenEnd = None
     
