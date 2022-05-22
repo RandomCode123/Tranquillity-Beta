@@ -78,6 +78,7 @@ class astCreation:
     Gradually improve ast from overall to detailed.
     """
     def __init__(self, sourceCode, syntaxInfo):
+        self.sourceCode = sourceCode
         self.syntaxInfo = syntaxInfo
 
         self.mainAst       = Tree()
@@ -118,6 +119,7 @@ class astCreation:
                 self.tokenEnd  = self.syntaxInfo["endSymbol"][symbol]["end"]
 
             print(self.tokenType, self.tokenEnd)
+            print(matchToken(self.sourceCOde, self.tokenType).execution())
 
             self.tokenEnd = None
     
