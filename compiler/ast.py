@@ -37,6 +37,10 @@ def showTree(mainTree):
     print("\n"+'='*20)
 
 class matchToken:
+    """
+    Find the location of the specified Token.
+    This is equivalent to marking the Token
+    """
     def __init__(self, string, targetString):
         self.string           = string
 
@@ -110,11 +114,12 @@ class astCreation:
 
         for symbol in self.endSymbolList:
             self.tokenType = self.syntaxInfo["endSymbol"][symbol]["type"]
-            if self.tokenType == None: 
+            if self.tokenType == "codeBlock": 
                 self.tokenEnd  = self.syntaxInfo["endSymbol"][symbol]["end"]
-                
+
             print(self.tokenType, self.tokenEnd)
 
+            self.tokenEnd = None
     
     def execution(self):
         self.checkResourceIntegrity()
