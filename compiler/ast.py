@@ -115,19 +115,30 @@ class astCreation:
 
     def getToken(self):
         for symbol in self.endSymbolList:
-            self.tokenType = self.syntaxInfo["endSymbol"][symbol]["type"]
-            if self.tokenType == "codeBlock": 
-                self.tokenEnd  = self.syntaxInfo["endSymbol"][symbol]["end"]
+            while True:  
+                self.tokenType = self.syntaxInfo["endSymbol"][symbol]["type"]
+                if self.tokenType == "codeBlock": 
+                    self.tokenEnd  = self.syntaxInfo["endSymbol"][symbol]["end"]
 
-            print(self.tokenType, self.tokenEnd)
-            self.tokenSign.append(markToken(self.sourceCode, symbol).execution())
-            print(self.tokenSign, self.tokenEnd)
-            if self.tokenType == "codeBlock":
-                self.tokenSign.append(markToken(self.sourceCode, self.tokenEnd).execution())
-            print(self.tokenSign)
+                print(self.tokenType, self.tokenEnd)
+                fristSymbolPos = markToken(self.sourceCode, symbol).execution()
+                if fristSymbolPos == []:
+                    break
 
+                self.tokenSign.append(markToken(self.sourceCode, symbol).execution())
+                print(self.tokenSign, self.tokenEnd)
+                if self.tokenType == "codeBlock":
+                    self.tokenSign.append(markToken(self.sourceCode, self.tokenEnd).execution())
+                print(self.tokenSign)
+
+                break # <--
+
+                print('='*15)
+
+                self.tokenEnd  = None
+                self.tokenSign = []
             self.tokenEnd  = None
-            self.tokenSign = []
+            self.tokenSign = {}
     
     def execution(self):
         self.checkResourceIntegrity()
