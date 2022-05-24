@@ -143,8 +143,13 @@ class astCreation:
 
                 if switchToken == True:
                     break
+
+                break # <---
             print(symbol)
             break
+    
+    def buildAST(self):
+        ...
     
     def execution(self):
         self.checkResourceIntegrity()
