@@ -20,4 +20,39 @@
 			["+", "-"]
 		]
 	}
+},
+
+{
+	"normalIdentifier": [
+		[
+			"{": {
+				"type": "codeBlock",
+				"rangeDirection": "left",
+				"endSymbol": "}"
+			},
+			";": {
+				"type": "codeBlock",
+				"rangeDirection": "left"
+			}
+		],
+		[
+			"import ": {
+				"type": "sentence",
+				"rangeDirection": "right",
+				"endSymbol": "as "
+			},
+			"class": {
+				"type": "sentence",
+				"rangeDirection": "right"
+			}
+		]
+	],
+	"additional": {
+		"}": {
+			"rangeDirection": "left"
+		},
+		"as ": {
+			"rangeDirection": "two-way"
+		}
+	}
 }
