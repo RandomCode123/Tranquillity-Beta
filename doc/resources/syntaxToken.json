@@ -1,58 +1,31 @@
 {
-	"endSymbol": {
-		"{": {
-			"type": "codeBlock",
-			"end": "}"
-		},
-		";": {
-			"type": "sentence"
-		},
-		"symbolList": ["{", ";"]
-	},
-	"keyword": ["import", "as", "class", "inherit", "func", "while", "if", "elif", "else", "var", "return", "break"],
-	"operator": {
-		"assignment": ["="],
-		"logic": [" and ", " or ", "!", "==", ">", "<", ">=", "<="],
-		"arithmetic": [
-			["<-", "->"], 
-			["**"], 
-			["*", "/"], 
-			["+", "-"]
-		]
-	}
-},
-
-{
 	"normalIdentifier": [
-		[
+		{
+			"global": {
+				"type":"codeBlock"
+			},
 			"{": {
-				"type": "codeBlock",
 				"rangeDirection": "left",
 				"endSymbol": "}"
 			},
 			";": {
-				"type": "codeBlock",
 				"rangeDirection": "left"
 			}
-		],
-		[
-			"import ": {
-				"type": "sentence",
-				"rangeDirection": "right",
-				"endSymbol": "as "
-			},
-			"class": {
+		}, 
+		{
+			"global": {
 				"type": "sentence",
 				"rangeDirection": "right"
-			}
-		]
+			},
+			"import ": {},
+			"class": {}, "func": {},
+			"while": {}, "if": {}, "elif": {}, "else": {},
+			"var": {}, "return": {}, "break": {}
+		}
 	],
 	"additional": {
 		"}": {
 			"rangeDirection": "left"
-		},
-		"as ": {
-			"rangeDirection": "two-way"
 		}
 	}
 }

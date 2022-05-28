@@ -113,40 +113,7 @@ class astCreation:
             sys.exit(0)
 
     def getToken(self):
-        fristSymbolPos = None
-        switchToken    = False
-        
-        for symbol in self.endSymbolList:
-            while True:  
-                self.tokenType = self.syntaxInfo["endSymbol"][symbol]["type"]
-                fristSymbolPos = markToken(self.sourceCode, symbol).execution()
-                if fristSymbolPos != []:
-                    print("fristSymbolPos:", fristSymbolPos)
-                    print(self.tokenSign)
-                    self.tokenSign.append(markToken(self.sourceCode, symbol).execution())
-                    print(self.tokenSign, self.tokenEnd)
-                    if self.tokenType == "codeBlock":
-                        self.tokenEnd  = self.syntaxInfo["endSymbol"][symbol]["end"]
-                        self.tokenSign.append(markToken(self.sourceCode, self.tokenEnd).execution())
-                    print(self.tokenSign)
-                else:
-                    switchToken = True
-
-                print('='*15)
-
-                self.tokenType = None
-                self.tokenEnd  = None
-                self.tokenSign = []
-
-                fristSymbolPos = None
-                switcgToken    = False
-
-                if switchToken == True:
-                    break
-
-                break # <---
-            print(symbol)
-            break
+        ...
     
     def buildAST(self):
         ...
