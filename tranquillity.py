@@ -27,8 +27,6 @@ class SyntaxInfoProcessing:
 				for l in self.currentlyIdentifierTable.keys():
 					if not i in l:
 						self.currentlyIdentifierTable[l][i] = self.tableGlobalInfomation[i]
-					print(i, l)
-			print(self.currentlyIdentifierTable)
 
 	def execution(self):
 		self.taskAllocation()
