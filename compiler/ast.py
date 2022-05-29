@@ -64,9 +64,10 @@ class astCreation:
         self.endSymbolList = None
 
         # Token
-        self.tokenType = None
-        self.tokenEnd  = None
-        self.tokenSign = []
+        self.tokenType      = None
+        self.tokenEnd       = None
+        self.rangeDirection = None
+        self.endSymbol      = None
     
     def checkResourceIntegrity(self):
         """
