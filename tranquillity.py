@@ -15,7 +15,12 @@ class SyntaxInfoProcessing:
 	
 	def taskAllocation(self):
 		self.currentlyIdentifierTable = self.syntaxInfo["additional"]
+		self.publicInfoProcessing()
 		print(self.currentlyIdentifierTable)
+		for i in self.syntaxInfo["normalIdentifier"]:
+			self.currentlyIdentifierTable = i
+			self.publicInfoProcessing()
+			print(self.currentlyIdentifierTable)
 
 	def publicInfoProcessing(self):
 		if "global" in self.currentlyIdentifierTable:
@@ -25,13 +30,11 @@ class SyntaxInfoProcessing:
 			# Replace the element in the currently processed identifier tabel
 			for i in self.tableGlobalInfomation.keys():
 				for l in self.currentlyIdentifierTable.keys():
-					if not i in l:
+					if not i in self.currentlyIdentifierTable[l]:
 						self.currentlyIdentifierTable[l][i] = self.tableGlobalInfomation[i]
 
 	def execution(self):
 		self.taskAllocation()
-		self.publicInfoProcessing()
-
 		return self.processedSyntaxInfo 
 
 class Tranquillity(object):
