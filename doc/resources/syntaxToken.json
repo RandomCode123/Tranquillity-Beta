@@ -44,14 +44,39 @@
 				"rangeDirection": "right" 
 			},
 			"==": {}, ">": {}, "<": {}, ">=": {}, "<=": {}
+		},
+		{
+			"global": {
+				"type": "sentence",
+				"rangeDirection": "bothSides"
+			},
+			"<-": {}, "->": {}
+		},
+		{
+			"**": {
+				"type": "sentence",
+				"rangeDirection": "bothSides"
+			}
+		},
+		{
+			"global": {
+				"type": "sentence",
+				"rangeDirection": "bothSides"
+			},
+			"*": {}, "/": {}
+		},
+		{
+			"global": {
+				"type": "sentence",
+				"rangeDirection": "bothSides"
+			},
+			"+": {}, "-": {}
 		}
 	],
 	"additional": {
-		"}": {
+		"global": {
 			"rangeDirection": "left"
 		},
-		")": {
-			"rangeDirection": "left"
-		}
+		"}": {}, ")": {}
 	}
 }
