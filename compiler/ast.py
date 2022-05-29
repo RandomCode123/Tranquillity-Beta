@@ -1,30 +1,4 @@
 import sys
-
-class Tree:
-    def __init__(self):
-        # The code contained in the tree structure
-        self.code   = None 
-        # The lexical type of the included code
-        self.type   = None
-        
-        # Branch information of Tree
-        self.branchCount = 0
-        self.branch      = []
-
-    def set(self, code, type):
-        """
-        * Set basic data in tree. *
-        """
-        self.code = code
-        self.type = type
-
-    def addBranch(self, tree):
-        """
-        * Create a new branch *
-        In essence, "create" is to add a new Tree to the branch list.
-        """
-        self.branch.append(tree)
-        self.branchCount += 1
     
 def showTree(mainTree):
     print('=' * 20)
@@ -86,7 +60,7 @@ class astCreation:
         self.sourceCode = sourceCode
         self.syntaxInfo = syntaxInfo
 
-        self.mainAst       = Tree()
+        self.mainAst       = {}
         self.endSymbolList = None
 
         # Token

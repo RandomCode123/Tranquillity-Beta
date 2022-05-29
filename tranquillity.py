@@ -4,6 +4,38 @@ import os, sys
 import compiler
 import interpreter
 
+class SyntaxInfoProcessing:
+	def __init__(self, syntaxInfo):
+		self.syntaxInfo          = syntaxInfo
+		self.processedSyntaxInfo = {}
+
+		self.currentlyIdentifierTable = None
+		self.tableGlobalInfomation    = None
+		self.taskProcessedSyntaxInfo  = {}
+	
+	def taskAllocation(self):
+		self.currentlyIdentifierTable = self.syntaxInfo["additional"]
+		print(self.currentlyIdentifierTable)
+
+	def publicInfoProcessing(self):
+		if "global" in self.currentlyIdentifierTable:
+			self.tableGlobalInfomation = self.currentlyIdentifierTable["global"]
+			self.currentlyIdentifierTable.pop("global")
+
+			# Replace the element in the currently processed identifier tabel
+			for i in self.tableGlobalInfomation.keys():
+				for l in self.currentlyIdentifierTable.keys():
+					if not i in l:
+						self.currentlyIdentifierTable[l][i] = self.tableGlobalInfomation[i]
+					print(i, l)
+			print(self.currentlyIdentifierTable)
+
+	def execution(self):
+		self.taskAllocation()
+		self.publicInfoProcessing()
+
+		return self.processedSyntaxInfo 
+
 class Tranquillity(object):
 	def __init__(self):
 		# Definition and declaration of variables
@@ -38,8 +70,9 @@ class Tranquillity(object):
 	def argvAnalysis(self):
 		with open("./run.ty", "rt") as f:
 			self.sourceCode = f.read()
-	
-		self.bytecode = compiler.Compiler(self.sourceCode, self.syntaxInfo)
+  
+		self.syntaxInfo = SyntaxInfoProcessing(self.syntaxInfo).execution()
+		#self.bytecode   = compiler.Compiler(self.sourceCode, self.syntaxInfo)
 
 # For later running on the command line .ty program preparation
 """

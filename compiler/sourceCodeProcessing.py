@@ -16,8 +16,8 @@ class SourceCodeProcessing:
         self.syntaxInfo = syntaxInfo
 		
         # AST tree struct
-        self.simpleAstTree = Tree()
-        self.astTree       = Tree()
+        self.simpleAstTree = {}
+        self.astTree       = {}
 		
     def deleteUselessSymbol(self):
         """
