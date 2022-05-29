@@ -7,7 +7,7 @@ import interpreter
 class SyntaxInfoProcessing:
 	def __init__(self, syntaxInfo):
 		self.syntaxInfo          = syntaxInfo
-		self.processedSyntaxInfo = {}
+		self.processedSyntaxInfo = {"normalIdentifier": [], "additional":{}}
 
 		self.currentlyIdentifierTable = None
 		self.tableGlobalInfomation    = None
@@ -16,10 +16,12 @@ class SyntaxInfoProcessing:
 	def taskAllocation(self):
 		self.currentlyIdentifierTable = self.syntaxInfo["additional"]
 		self.publicInfoProcessing()
-		
+		self.processedSyntaxInfo["additional"] = self.currentlyIdentifierTable
+
 		for i in self.syntaxInfo["normalIdentifier"]:
 			self.currentlyIdentifierTable = i
 			self.publicInfoProcessing()
+			self.processedSyntaxInfo["normalIdentifier"].append(self.currentlyIdentifierTable)
 
 	def publicInfoProcessing(self):
 		if "global" in self.currentlyIdentifierTable:
@@ -34,7 +36,7 @@ class SyntaxInfoProcessing:
 
 	def execution(self):
 		self.taskAllocation()
-		return self.processedSyntaxInfo 
+		print(self.processedSyntaxInfo)
 
 class Tranquillity(object):
 	def __init__(self):
