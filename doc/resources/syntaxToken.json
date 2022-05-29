@@ -21,10 +21,36 @@
 			"class": {}, "func": {},
 			"while": {}, "if": {}, "elif": {}, "else": {},
 			"var": {}, "return": {}, "break": {}
+		},
+		{
+			"=": {
+				"type": "sentence",
+				"rangeDirection": "bothSides"
+			}
+		},
+		{
+			"(": {
+				"type": "codeBlock",
+				"endSymbol": ")"
+			}	
+		},
+		{
+			"global":{
+				"type": "sentence",
+				"rangeDirection": "bothSides"
+			},
+			" and ": {}, " or ": {}, 
+			"!": { 
+				"rangeDirection": "right" 
+			},
+			"==": {}, ">": {}, "<": {}, ">=": {}, "<=": {}
 		}
 	],
 	"additional": {
 		"}": {
+			"rangeDirection": "left"
+		},
+		")": {
 			"rangeDirection": "left"
 		}
 	}
