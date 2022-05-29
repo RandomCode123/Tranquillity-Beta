@@ -16,11 +16,10 @@ class SyntaxInfoProcessing:
 	def taskAllocation(self):
 		self.currentlyIdentifierTable = self.syntaxInfo["additional"]
 		self.publicInfoProcessing()
-		print(self.currentlyIdentifierTable)
+		
 		for i in self.syntaxInfo["normalIdentifier"]:
 			self.currentlyIdentifierTable = i
 			self.publicInfoProcessing()
-			print(self.currentlyIdentifierTable)
 
 	def publicInfoProcessing(self):
 		if "global" in self.currentlyIdentifierTable:
