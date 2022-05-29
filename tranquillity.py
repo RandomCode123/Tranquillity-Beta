@@ -40,11 +40,14 @@ class Tranquillity(object):
 			self.sourceCode = f.read()
 	
 		self.bytecode = compiler.Compiler(self.sourceCode, self.syntaxInfo)
+
+# For later running on the command line .ty program preparation
 """
 if len(argvList) == 1:
 	# The user has not entered any information at this time.
 	print(cmdInfo)
 	sys.exit(0)
 """
+
 if __name__ == "__main__":
 	Tranquillity()
