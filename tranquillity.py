@@ -35,8 +35,8 @@ class SyntaxInfoProcessing:
 						self.currentlyIdentifierTable[l][i] = self.tableGlobalInfomation[i]
 
 	def execution(self):
+		# Function execution
 		self.taskAllocation()
-		print(self.processedSyntaxInfo)
 
 class Tranquillity(object):
 	def __init__(self):
@@ -74,7 +74,7 @@ class Tranquillity(object):
 			self.sourceCode = f.read()
   
 		self.syntaxInfo = SyntaxInfoProcessing(self.syntaxInfo).execution()
-		#self.bytecode   = compiler.Compiler(self.sourceCode, self.syntaxInfo)
+		self.bytecode   = compiler.Compiler(self.sourceCode, self.syntaxInfo).execution()
 
 # For later running on the command line .ty program preparation
 """

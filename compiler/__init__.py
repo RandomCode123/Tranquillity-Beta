@@ -8,8 +8,10 @@ class Compiler:
 		
 		self.bytecode   = None
 		
+	def basicProcessing(self):
+		# Basic processing of source code
+		self.bytecode = SourceCodeProcessing(self.sourceCode, self.syntaxInfo).execution()
+	
+	def execution(self):
 		# Function execution
 		self.basicProcessing()
-	def basicProcessing(self):
-		""" Basic processing of source code """
-		self.bytecode = SourceCodeProcessing(self.sourceCode, self.syntaxInfo).execution()
