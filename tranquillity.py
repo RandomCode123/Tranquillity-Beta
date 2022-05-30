@@ -14,25 +14,33 @@ class SyntaxInfoProcessing:
         self.taskProcessedSyntaxInfo  = {}
 	
     def taskAllocation(self):
-        self.currentlyIdentifierTable = self.syntaxInfo["additional"]
-        self.publicInfoProcessing()
-        self.processedSyntaxInfo["additional"] = self.currentlyIdentifierTable
-
-        for i in self.syntaxInfo["normalIdentifier"]:
-            self.currentlyIdentifierTable = i
+        try:
+            self.currentlyIdentifierTable = self.syntaxInfo["additional"]
             self.publicInfoProcessing()
-            self.processedSyntaxInfo["normalIdentifier"].append(self.currentlyIdentifierTable)
+            self.processedSyntaxInfo["additional"] = self.currentlyIdentifierTable
+
+            for i in self.syntaxInfo["normalIdentifier"]:
+                self.currentlyIdentifierTable = i
+                self.publicInfoProcessing()
+                self.processedSyntaxInfo["normalIdentifier"].append(self.currentlyIdentifierTable)
+        except:
+            print("OSError: Lack of resource integrity.")
+            sys.exit(0)
     
     def publicInfoProcessing(self):
-        if "global" in self.currentlyIdentifierTable:
-            self.tableGlobalInfomation = self.currentlyIdentifierTable["global"]
-            self.currentlyIdentifierTable.pop("global")
+        try:
+            if "global" in self.currentlyIdentifierTable:
+                self.tableGlobalInfomation = self.currentlyIdentifierTable["global"]
+                self.currentlyIdentifierTable.pop("global")
 
-            # Replace the element in the currently processed identifier tabel
-            for i in self.tableGlobalInfomation.keys():
-                for l in self.currentlyIdentifierTable.keys():
-                    if not i in self.currentlyIdentifierTable[l]:
-                        self.currentlyIdentifierTable[l][i] = self.tableGlobalInfomation[i]
+                # Replace the element in the currently processed identifier tabel
+                for i in self.tableGlobalInfomation.keys():
+                    for l in self.currentlyIdentifierTable.keys():
+                        if not i in self.currentlyIdentifierTable[l]:
+                            self.currentlyIdentifierTable[l][i] = self.tableGlobalInfomation[i]
+        except:
+            print("OSError: Lack of resource integrity.")
+            sys.exit(0)
 
     def execution(self):
 		# Function execution
