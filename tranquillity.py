@@ -5,76 +5,75 @@ import compiler
 import interpreter
 
 class SyntaxInfoProcessing:
-	def __init__(self, syntaxInfo):
-		self.syntaxInfo          = syntaxInfo
-		self.processedSyntaxInfo = {"normalIdentifier": [], "additional":{}}
+    def __init__(self, syntaxInfo):
+        self.syntaxInfo          = syntaxInfo
+        self.processedSyntaxInfo = {"normalIdentifier": [], "additional":{}}
 
-		self.currentlyIdentifierTable = None
-		self.tableGlobalInfomation    = None
-		self.taskProcessedSyntaxInfo  = {}
+        self.currentlyIdentifierTable = None
+        self.tableGlobalInfomation    = None
+        self.taskProcessedSyntaxInfo  = {}
 	
-	def taskAllocation(self):
-		self.currentlyIdentifierTable = self.syntaxInfo["additional"]
-		self.publicInfoProcessing()
-		self.processedSyntaxInfo["additional"] = self.currentlyIdentifierTable
+    def taskAllocation(self):
+        self.currentlyIdentifierTable = self.syntaxInfo["additional"]
+        self.publicInfoProcessing()
+        self.processedSyntaxInfo["additional"] = self.currentlyIdentifierTable
 
-		for i in self.syntaxInfo["normalIdentifier"]:
-			self.currentlyIdentifierTable = i
-			self.publicInfoProcessing()
-			self.processedSyntaxInfo["normalIdentifier"].append(self.currentlyIdentifierTable)
+        for i in self.syntaxInfo["normalIdentifier"]:
+            self.currentlyIdentifierTable = i
+            self.publicInfoProcessing()
+            self.processedSyntaxInfo["normalIdentifier"].append(self.currentlyIdentifierTable)
+    
+    def publicInfoProcessing(self):
+        if "global" in self.currentlyIdentifierTable:
+            self.tableGlobalInfomation = self.currentlyIdentifierTable["global"]
+            self.currentlyIdentifierTable.pop("global")
 
-	def publicInfoProcessing(self):
-		if "global" in self.currentlyIdentifierTable:
-			self.tableGlobalInfomation = self.currentlyIdentifierTable["global"]
-			self.currentlyIdentifierTable.pop("global")
+            # Replace the element in the currently processed identifier tabel
+            for i in self.tableGlobalInfomation.keys():
+                for l in self.currentlyIdentifierTable.keys():
+                    if not i in self.currentlyIdentifierTable[l]:
+                        self.currentlyIdentifierTable[l][i] = self.tableGlobalInfomation[i]
 
-			# Replace the element in the currently processed identifier tabel
-			for i in self.tableGlobalInfomation.keys():
-				for l in self.currentlyIdentifierTable.keys():
-					if not i in self.currentlyIdentifierTable[l]:
-						self.currentlyIdentifierTable[l][i] = self.tableGlobalInfomation[i]
-
-	def execution(self):
+    def execution(self):
 		# Function execution
-		self.taskAllocation()
+        self.taskAllocation()
+        return self.syntaxInfo
 
 class Tranquillity(object):
-	def __init__(self):
-		# Definition and declaration of variables
-		self.osType         = os.name # Computer system type
-		self.argvList       = sys.argv # Command parameter list
-		self.helpFileNormal = True # Integrity of external resources
-
-		self.cmdInfo        = None # Command parameter information
-		self.syntaxInfo     = None
+    def __init__(self):
+        # Definition and declaration of variables
+        self.osType         = os.name # Computer system type
+        self.argvList       = sys.argv # Command parameter list
+        self.helpFileNormal = True # Integrity of external resources
+        self.cmdInfo        = None # Command parameter information
+        self.syntaxInfo     = None
 		
-		self.sourceCode     = None # Source code to be compiled.
-		self.byteCode       = None # Bytecode generated after source code compilation.
+        self.sourceCode     = None # Source code to be compiled.
+        self.byteCode       = None # Bytecode generated after source code compilation.
 
-		# Function execution
-		self.resourcesIntegrity()
-		self.argvAnalysis()
+        # Function execution
+        self.resourcesIntegrity()
+        self.argvAnalysis()
 
-	def resourcesIntegrity(self):
-		try:
-			with open("./doc/resources/cmd.info", "rt") as f:
-				self.cmdInfo = f.read()
-			
-			with open("./doc/resources/syntaxToken.json") as f:
-				self.syntaxInfo = loads(f.read())
-		except:
-			self.helpFileNormal = False
+    def resourcesIntegrity(self):
+        try:
+            with open("./doc/resources/cmd.info", "rt") as f:
+                self.cmdInfo = f.read()
 
-		if self.helpFileNormal == False:
-			print("OSError5: Lack of integrity of external resources.")
-			sys.exit(0)
-	
-	def argvAnalysis(self):
-		with open("./run.ty", "rt") as f:
-			self.sourceCode = f.read()
+            with open("./doc/resources/syntaxToken.json") as f:
+                self.syntaxInfo = loads(f.read())
+        except:
+            self.helpFileNormal = False
+
+        if self.helpFileNormal == False:
+            print("OSError5: Lack of integrity of external resources.")
+            sys.exit(0)
+    def argvAnalysis(self):
+        with open("./run.ty", "rt") as f: 
+            self.sourceCode = f.read()
   
-		self.syntaxInfo = SyntaxInfoProcessing(self.syntaxInfo).execution()
-		self.bytecode   = compiler.Compiler(self.sourceCode, self.syntaxInfo).execution()
+        self.syntaxInfo = SyntaxInfoProcessing(self.syntaxInfo).execution()
+        self.bytecode   = compiler.Compiler(self.sourceCode, self.syntaxInfo).execution()
 
 # For later running on the command line .ty program preparation
 """

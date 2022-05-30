@@ -70,25 +70,26 @@ class astCreation:
         self.endSymbol      = None
     
     def checkResourceIntegrity(self):
-        """
-        * Check resource integrity. *
+            """
+            * Check resource integrity. *
 
-        Check if the required resources are missin.
-        Note: check the integrity of resources generally.
-        """
-        try:
+            Check if the required resources are missin.
+            Note: check the integrity of resources generally.
+            """
+            #try:
             # Statement Terminator
+            print(self.syntaxInfo)
             self.endSymbolList = list(self.syntaxInfo["endSymbol"]["symbolList"])
 
             if (len(self.endSymbolList) == 0) or (not len(self.endSymbolList) == len(self.syntaxInfo["endSymbol"]["symbolList"])):
                 print("OSError2: Lack of resource integrity.")
                 sys.exit(0)
-        except:
-            print("OSError3: Lack of resource integrity.")
-            sys.exit(0)
+            #except:
+                print("OSError3: Lack of resource integrity.")
+                sys.exit(0)
 
     def getToken(self):
-        ...
+        print(self.syntaxInfo)
     
     def buildAST(self):
         ...
