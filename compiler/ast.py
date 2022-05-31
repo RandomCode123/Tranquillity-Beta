@@ -97,9 +97,14 @@ class astCreation:
 
     def getToken(self):
         print(self.syntaxInfo["normalIdentifier"][0])
+        frontmostIdentifierPos = [-1, -1]
+        forntmostIdentifier    = None
+        codeToBeProcessed      = self.sourceCode
         for i in self.syntaxInfo["normalIdentifier"]:
             for l in i.keys():
-               ... 
+                pos = markToken(codeToBeProcessed, l).execution()
+                if pos[0] >= frontmostIdentifierPos[0]:
+                    frontmostIdentifierPos = pos
 
     def buildAST(self):
         ...
