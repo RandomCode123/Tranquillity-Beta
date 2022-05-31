@@ -103,6 +103,8 @@ class astCreation:
         for i in self.syntaxInfo["normalIdentifier"]:
             for l in i.keys():
                 pos = markToken(codeToBeProcessed, l).execution()
+                print(pos, frontmostIdentifierPos)
+                if pos == []: continue
                 if pos[0] >= frontmostIdentifierPos[0]:
                     frontmostIdentifierPos = pos
 
