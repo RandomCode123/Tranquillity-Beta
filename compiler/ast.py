@@ -96,8 +96,11 @@ class astCreation:
         self.endSymbol      = None
 
     def getToken(self):
-        print(self.syntaxInfo)
-    
+        print(self.syntaxInfo["normalIdentifier"][0])
+        for i in self.syntaxInfo["normalIdentifier"]:
+            for l in i.keys():
+               ... 
+
     def buildAST(self):
         ...
     

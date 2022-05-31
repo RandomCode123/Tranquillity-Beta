@@ -2,7 +2,8 @@
 	"normalIdentifier": [
 		{
 			"global": {
-				"type":"codeBlock"
+				"type":"codeBlock",
+				"hideSymbol": "True"
 			},
 			"{": {
 				"rangeDirection": "left",
