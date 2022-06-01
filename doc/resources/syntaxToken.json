@@ -3,7 +3,7 @@
 		{
 			"global": {
 				"type":"codeBlock",
-				"hideSymbol": "True"
+				"tokenHiding": "True"
 			},
 			"{": {
 				"rangeDirection": "left",
@@ -76,7 +76,8 @@
 	],
 	"additional": {
 		"global": {
-			"rangeDirection": "left"
+			"rangeDirection": "left",
+			"tokenHiding": "True"
 		},
 		"}": {}, ")": {}
 	}

@@ -91,22 +91,36 @@ class astCreation:
 
         # Token
         self.tokenType      = None
-        self.tokenEnd       = None
+        self.tokenHiding    = None
         self.rangeDirection = None
         self.endSymbol      = None
 
+        self.frontmostIdentifierPos = [-1, -1]
+        self.frontmostIdentifier    = None
+
     def getToken(self):
         print(self.syntaxInfo["normalIdentifier"][0])
-        frontmostIdentifierPos = [-1, -1]
-        forntmostIdentifier    = None
+
         codeToBeProcessed      = self.sourceCode
         for i in self.syntaxInfo["normalIdentifier"]:
-            for l in i.keys():
-                pos = markToken(codeToBeProcessed, l).execution()
-                print(pos, frontmostIdentifierPos)
-                if pos == []: continue
-                if pos[0] >= frontmostIdentifierPos[0]:
-                    frontmostIdentifierPos = pos
+            while codeToBeProcessed != '':
+                for l in i.keys():
+                    pos = markToken(codeToBeProcessed, l).execution()
+                    print(pos, self.frontmostIdentifierPos)
+                    if pos == []: break
+                    if pos[0] >= self.frontmostIdentifierPos[0]:
+                        self.frontmostIdentifier    = l
+                        self.frontmostIdentifierPos = pos
+
+                        self.tokenType      = i[l]["type"]
+                        self.tokenHiding    = i[l]["tokenHiding"]
+                        if "endSymbol" in i[l]: 
+                            self.endSymbol  = i[l]["endSymbol"]
+                        self.rangeDirection = i[l]["rangeDirection"]
+                # Tag dependent spanning Tree
+                self.buildAST()
+                # Reload the code to be parsed
+                codeToBeProcessed = self.sourceCode
 
     def buildAST(self):
         ...
