@@ -50,7 +50,6 @@ class markToken:
     def find(self):
         stringMode      = False 
         targetStringPos = 0
-        print(self.string)
 
         for i in range(len(self.string)):
             # Enter string mode.
@@ -96,27 +95,39 @@ class astCreation:
         self.endSymbol      = None
 
         self.frontmostIdentifierPos = [-1, -1]
+        self.endSymbolIdentifierPos = None
         self.frontmostIdentifier    = None
 
     def getToken(self):
-        print(self.syntaxInfo["normalIdentifier"][0])
-
+        # print("0:", self.syntaxInfo["normalIdentifier"][0])
         codeToBeProcessed      = self.sourceCode
         for i in self.syntaxInfo["normalIdentifier"]:
             while codeToBeProcessed != '':
                 for l in i.keys():
                     pos = markToken(codeToBeProcessed, l).execution()
-                    print(pos, self.frontmostIdentifierPos)
-                    if pos == []: break
+
+                    # If it cannot be found, the loop is restarted.
+                    # The meaning is to find the identifier in the identifier table of the same priority
+                    if pos == []: continue
+                    # Find the top identifier in the code position in the same priority table
                     if pos[0] >= self.frontmostIdentifierPos[0]:
                         self.frontmostIdentifier    = l
                         self.frontmostIdentifierPos = pos
 
-                        self.tokenType      = i[l]["type"]
-                        self.tokenHiding    = i[l]["tokenHiding"]
-                        if "endSymbol" in i[l]: 
-                            self.endSymbol  = i[l]["endSymbol"]
-                        self.rangeDirection = i[l]["rangeDirection"]
+                        try:
+                            # Get identifier information
+                            self.tokenType      = i[l]["type"]
+                            self.tokenHiding    = i[l]["tokenHiding"]
+                            if "endSymbol" in i[l]:
+                                self.endSymbol  = i[l]["endSymbol"]
+                                # If there is an endsymbol attribute,
+                                # then mark the position of endsymbol.
+                                self.endSymbolIdentifierPos = \
+                                    markToken(codeToBeProcessed, self.endSymbol).execution()
+                            self.rangeDirection = i[l]["rangeDirection"]
+                        except:
+                            print("OSError: Lack of integrity of external resources.")
+                            sys.exit(0)
                 # Tag dependent spanning Tree
                 self.buildAST()
                 # Reload the code to be parsed

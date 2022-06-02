@@ -5,6 +5,13 @@ import compiler
 import interpreter
 
 class SyntaxInfoProcessing:
+    """
+    * Parsing JSON information of symbolInfo *
+
+    Parse the concise symbolinfo written by users into information that can be used directly.
+    The Tranquility-Beta version has documentation.
+    You can read the documentation, so I won't repeat it here
+    """
     def __init__(self, syntaxInfo):
         self.syntaxInfo          = syntaxInfo
         self.processedSyntaxInfo = {"normalIdentifier": [], "additional":{}}
