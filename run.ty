@@ -9,10 +9,10 @@ import .show.window.draw as *;
 class Main <- . {
 	if sys->runMode == "module"
 	{
-		var window = Windows.init();
-	}elif 
+		var window = Windows->init();
+	}else
 	{
-		sys->exit();	
+		sys->exit();
 	}
 }
 
@@ -35,3 +35,13 @@ class Window {
 class Label inherit    Window <- . {
 	/* It has been realized. */
 }
+/*
+# Reset
+                        self.tokenType      = None
+                        self.tokenHiding    = None
+                        self.rangeDirection = None
+                        self.endSymbol      = None
+                        
+                        self.endSymbolIdentifierPos = None
+                        self.frontmostIdentifier    = None
+*/

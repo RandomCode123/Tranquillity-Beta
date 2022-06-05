@@ -1,4 +1,4 @@
-from json import dumps, loads
+from json import loads
 import os, sys
 
 import compiler
@@ -61,7 +61,7 @@ class Tranquillity(object):
         self.argvList       = sys.argv # Command parameter list
         self.helpFileNormal = True # Integrity of external resources
         self.cmdInfo        = None # Command parameter information
-        self.syntaxInfo     = None
+        self.syntaxInfo     = None # Syntax information
 		
         self.sourceCode     = None # Source code to be compiled.
         self.byteCode       = None # Bytecode generated after source code compilation.

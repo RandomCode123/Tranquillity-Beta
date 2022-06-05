@@ -85,7 +85,7 @@ class astCreation:
         self.sourceCode = sourceCode
         self.syntaxInfo = syntaxInfo
 
-        self.mainAst       = {}
+        self.mainAst       = Tree()
         self.endSymbolList = None
 
         # Token
@@ -94,12 +94,16 @@ class astCreation:
         self.rangeDirection = None
         self.endSymbol      = None
 
-        self.frontmostIdentifierPos = [-1, -1]
+        self.frontmostIdentifierPos = [len(self.sourceCode)-1]
         self.endSymbolIdentifierPos = None
         self.frontmostIdentifier    = None
 
+        self.substitutionList       = {}
+        self.substitutionListLength = 0
+
     def getToken(self):
         # print("0:", self.syntaxInfo["normalIdentifier"][0])
+        print(33)
         codeToBeProcessed      = self.sourceCode
         for i in self.syntaxInfo["normalIdentifier"]:
             while codeToBeProcessed != '':
@@ -110,7 +114,8 @@ class astCreation:
                     # The meaning is to find the identifier in the identifier table of the same priority
                     if pos == []: continue
                     # Find the top identifier in the code position in the same priority table
-                    if pos[0] >= self.frontmostIdentifierPos[0]:
+                    print("pos:", pos[0], self.frontmostIdentifierPos[0])
+                    if pos[0] <= self.frontmostIdentifierPos[0]:
                         self.frontmostIdentifier    = l
                         self.frontmostIdentifierPos = pos
 
@@ -128,13 +133,23 @@ class astCreation:
                         except:
                             print("OSError: Lack of integrity of external resources.")
                             sys.exit(0)
+
                 # Tag dependent spanning Tree
                 self.buildAST()
                 # Reload the code to be parsed
                 codeToBeProcessed = self.sourceCode
+                
+                print('='*20)
+            break
 
     def buildAST(self):
-        ...
+        print("uh:", self.sourceCode[0:self.frontmostIdentifierPos[0]])
+        print("info:",self.endSymbolIdentifierPos)
+        if self.endSymbolIdentifierPos != None:
+            self.sourceCode = self.sourceCode[self.endSymbolIdentifierPos[-1]:-1]
+        else:
+            self.sourceCode = self.sourceCode[self.frontmostIdentifierPos[-1]:-1]
+        print("---\n"+self.sourceCode+"\n---")
     
     def execution(self):
         #self.checkResourceIntegrity()

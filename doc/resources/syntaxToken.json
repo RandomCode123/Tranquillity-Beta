@@ -19,9 +19,9 @@
 				"rangeDirection": "right"
 			},
 			"import ": {},
-			"class": {}, "func": {},
-			"while": {}, "if": {}, "elif": {}, "else": {},
-			"var": {}, "return": {}, "break": {}
+			"class ": {}, "func": {},
+			"while ": {}, "if ": {}, "elif ": {}, "else ": {},
+			"var ": {}, "return ": {}, "break ": {}
 		},
 		{
 			"=": {
@@ -32,7 +32,8 @@
 		{
 			"(": {
 				"type": "codeBlock",
-				"endSymbol": ")"
+				"endSymbol": ")",
+				"tokenHiding": "True"
 			}	
 		},
 		{
@@ -44,14 +45,15 @@
 			"!": { 
 				"rangeDirection": "right" 
 			},
-			"==": {}, ">": {}, "<": {}, ">=": {}, "<=": {}
+			"==": {}, ">": {}, "<": {}, ">=": {}, 
+			"<=": {}
 		},
 		{
 			"global": {
 				"type": "sentence",
 				"rangeDirection": "bothSides"
 			},
-			"<-": {}, "->": {}
+			"<-": {}, "->": {}, " as ":{}
 		},
 		{
 			"**": {
