@@ -50,8 +50,8 @@ class SyntaxInfoProcessing:
             sys.exit(0)
 
     def execution(self):
-	# Function execution
-	self.taskAllocation()
+        # Function execution
+        self.taskAllocation()
         return self.syntaxInfo
 
 class Tranquillity(object):
