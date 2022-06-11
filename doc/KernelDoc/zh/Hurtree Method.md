@@ -1,0 +1,22 @@
+# Hurtree 词法分析法
+**Hurtree词法分析法**是利用不同<b>令牌(Token)</b>之间<b>优先级顺序(Priority Sequence)</b>所带来的特定规律来对代码进行**词法分析(Lexical Analysis)**， 解析后是呈现的简单的AST结构. <br><br>
+
+# Syntax Information 概念
+
+**Syntax Information**是一个**令牌优先级顺序处理信息表(Token Priority Sequence Processing Table)**，指定的**词法分析器(Lexical Analyzer)**可以根据 Syntax Information 将代码解析为**抽象语法树 (Abstract Syntax Tree)**.<br>
+Syntax Information 中每个**标签(Tag)**，即令牌，都可以设置各自的**属性(Attribute)**，不同的属性赋予标签不同的功能。使之，当某个令牌被分析时，不同属性划定了如何对其进行分析以解析出正确的语法抽象树。<br>
+在**Syntax Information v1.0-pre**中每个标签最多可以有4种不同属性，分别是 **typeToken**, **rangeDirection**, **hideSymbol**, **endSymbol**.<br><br>
+
+# Syntax Information 标签
+在Syntax Information中，若**必要标签(Required Label)** 未被设置，会导致程序无法再正常运行下去. 例如，在Tranquillity Beta中会报出`OSError: Lack of resource integrity.`以表示`资源完整性缺失`；**可设标签(Optional label)** 是可选的，即可以为标签添加可设标签来满足特殊的需求. 对于必要标签和可设标签的定义，取决于标签的**typeToken**属性和标签的功能. <br>
+**可设值(Settable Value)** 是每个属性必须有的，每个属性最少有一个可设值. 可设值可以为**规则定义**的，也可以为**用户设置**的，取决于不同属性的功能来决定. 
+
+- ## typeToken: 
+    该属性表示该标签的类型，该属性为**必要标签**. 该属性有**sentence**和**codeBlock**两个可设值. <br>
+    若可设值为sentence，则表示该标签在代码中属于在<b>语句(Sentence)</b>中出现的令牌； 若可设值为codeBlock，则表示该标签在代码中属于<b>代码块(Code Block)</b>中出现的令牌. 
+- ## rangeDirection: 
+    该属性表示该标签所要包含的<b>解析代码(Processing Code)</b>相对于该标签的方向，该属性为**必要标签**. 该属性有**left**, **bothSide**和**right**三个可设值. <br>
+
+    > **解析代码(Processing Code)** 是令牌周围划定的指定范围内的代码，其在解析时会被替代为一个表示此代码的指定符号. 此代码在解析时也会被解析，此代码被解析完毕后，这串代码往往由Token和低一层的解析代码所代表的指定符号重新表示. 此解析代码是为了<u>代入</u><sup><a href="https://baike.baidu.com/item/%E4%BB%A3%E5%85%A5/19063857">[1]</a></sup>进其所在的高一层的代码.
+
+    ....
