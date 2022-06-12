@@ -101,7 +101,13 @@ class astCreation:
         self.substitutionList       = {}
         self.substitutionListLength = 0
 
-    def getToken(self):
+    def execution(self):
+        #self.checkResourceIntegrity()
+        self.getToken()
+
+
+"""
+def getToken(self):
         # print("0:", self.syntaxInfo["normalIdentifier"][0])
         print(33)
         codeToBeProcessed      = self.sourceCode
@@ -151,6 +157,4 @@ class astCreation:
             self.sourceCode = self.sourceCode[self.frontmostIdentifierPos[-1]:-1]
         print("---\n"+self.sourceCode+"\n---")
     
-    def execution(self):
-        #self.checkResourceIntegrity()
-        self.getToken()
+"""
