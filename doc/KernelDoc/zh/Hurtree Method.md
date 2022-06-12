@@ -26,3 +26,9 @@ Syntax Information 中每个<u>**标签(Tag)**</u><sup><a href="https://baike.ba
     该属性表示所属标签的标签名是否在抽象语法树中被隐藏，即是否将该标签的解析结果直接插入上一级分支. 该属性为**可设标签**. 该属性有<u>**True**</u><sup><a href="https://baike.baidu.com/item/%E5%B8%83%E5%B0%94%E5%80%BC" target="_blank">[7]</a></sup>和<u>**False**</u><sup><a href="https://baike.baidu.com/item/%E5%B8%83%E5%B0%94%E5%80%BC" target="_blank">[8]</a></sup>两种可设值.<br>
 - ## endSymbol:
     该属性表示所属标签的typeToken属性为codeBlock时的结束符. 该属性比较多变，若所属标签的typeToken属性为codeBlock，该属性为**必要标签**；但若所属标签的typeToken属性为snetence时，改属性为**可选标签**. 改属性的可设值为用户自定义.
+<br><br>
+
+# 词法分析
+Hurtree分析法本质上只是利用令牌优先级所带来的某些特性来分析代码词法. Syntax Information提供了令牌的属性和优先级，以及一些其它附加属性，这些属性能帮助支持Hurtree的词法分析器来解析代码词法和生成对应的抽象语法树.
+
+
