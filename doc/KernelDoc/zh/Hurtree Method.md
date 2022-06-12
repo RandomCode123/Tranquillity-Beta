@@ -8,10 +8,10 @@ Syntax Information 中每个<u>**标签(Tag)**</u><sup><a href="https://baike.ba
 在**Syntax Information v1.0-pre**中每个标签最多可以有4种不同属性，分别是 **typeToken**, **rangeDirection**, **hideSymbol**, **endSymbol**.<br><br>
 
 # Syntax Information 标签
-在Syntax Information中，若**必要标签(Required Label)** 未被设置，会导致程序无法再正常运行下去. 例如，在Tranquillity Beta中会报出`OSError: Lack of resource integrity.`以表示`资源完整性缺失`；**可设标签(Optional label)** 是可选的，即可以为标签添加可设标签来满足特殊的需求. 对于必要标签和可设标签的定义，取决于标签的**typeToken属性**和标签的功能. <br>
+在Syntax Information中，若**必要标签(Required Label)** 未被设置，会导致程序无法再正常运行下去. 例如，在Tranquillity Beta中会报出`OSError: Lack of resource integrity.`以表示`资源完整性缺失`；**可设标签(Optional label)** 是可选的，即可以为标签添加可设标签来满足特殊的需求. 对于必要标签和可设标签的定义，取决于标签的所属令牌的具体功能. <br>
 **可设值(Settable Value)** 是每个属性必须有的，每个属性最少有一个可设值. 可设值可以为**规则定义**的，也可以为**用户设置**的，取决于不同属性的功能来决定. 
 
-> 当标签的
+> 在Syntax Information中，标签即是属性. 当标签的标签为可设标签时，该标签是否被使用被使用取决于所属令牌的具体功能. 例如，如果所属令牌的typeToken值为codeBlock，则某些可设标签会被使用；获如果设置了hideSymbol标签，则会以设置的可设值为准，否则默认为False.
 
 - ## typeToken: 
     该属性表示所属令牌的类型，该属性为**必要标签**. 该属性有**sentence**和**codeBlock**两个可设值. <br>
@@ -23,6 +23,6 @@ Syntax Information 中每个<u>**标签(Tag)**</u><sup><a href="https://baike.ba
 
     若可设值为left时，则表示指定范围为左边部分，有一片解析代码；同理，若可设值为right时，则表示指定范围为右边部分，有一片解析代码；若可设值为bothSide，则表示指定范围为左边部分和右边部分，有两片解析代码. 
 - ## hideSymbol:
-    该属性表示所属标签的标签名是否在抽象语法树中被隐藏，即是否将该标签的解析结果直接插入上一级分支. 该属性为**可设标签**. 该属性有**True**和**False**两种可设值.<br>
+    该属性表示所属标签的标签名是否在抽象语法树中被隐藏，即是否将该标签的解析结果直接插入上一级分支. 该属性为**可设标签**. 该属性有<u>**True**</u><sup><a href="https://baike.baidu.com/item/%E5%B8%83%E5%B0%94%E5%80%BC">[7]</a></sup>和<u>**False**</u><sup><a href="https://baike.baidu.com/item/%E5%B8%83%E5%B0%94%E5%80%BC">[8]</a></sup>两种可设值.<br>
 - ## endSymbol:
-    该属性表示所属标签在typeToken属性为codeBlock时的
+    该属性表示所属标签的typeToken属性为codeBlock时的结束符. 该属性比较多变，若所属标签的typeToken属性为codeBlock，该属性为**必要标签**；但若所属标签的typeToken属性为snetence时，改属性为**可选标签**. 改属性的可设值为用户自定义.
