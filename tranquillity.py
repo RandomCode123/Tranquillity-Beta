@@ -19,7 +19,7 @@ class SyntaxInfoProcessing:
         self.currentlyIdentifierTable = None
         self.tableGlobalInfomation    = None
         self.taskProcessedSyntaxInfo  = {}
-	
+    
     def taskAllocation(self):
         try:
             self.currentlyIdentifierTable = self.syntaxInfo["additional"]
@@ -62,7 +62,7 @@ class Tranquillity(object):
         self.helpFileNormal = True # Integrity of external resources
         self.cmdInfo        = None # Command parameter information
         self.syntaxInfo     = None # Syntax information
-		
+        
         self.sourceCode     = None # Source code to be compiled.
         self.byteCode       = None # Bytecode generated after source code compilation.
 
@@ -93,10 +93,10 @@ class Tranquillity(object):
 # For later running on the command line .ty program preparation
 """
 if len(argvList) == 1:
-	# The user has not entered any information at this time.
-	print(cmdInfo)
-	sys.exit(0)
+    # The user has not entered any information at this time.
+    print(cmdInfo)
+    sys.exit(0)
 """
 
 if __name__ == "__main__":
-	Tranquillity()
+    Tranquillity()

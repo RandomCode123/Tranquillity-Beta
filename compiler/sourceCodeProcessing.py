@@ -10,15 +10,15 @@ class SourceCodeProcessing:
     Parse the bytecode according to AST.
     """
     def __init__(self, sourceCode, syntaxInfo):
-		# Definition and declaration of variables
+        # Definition and declaration of variables
         self.sourceCode = sourceCode
         # Grammatical structur
         self.syntaxInfo = syntaxInfo
-		
+        
         # AST tree struct
         self.simpleAstTree = {}
         self.astTree       = {}
-		
+        
     def deleteUselessSymbol(self):
         """
         * Delete useless characters *

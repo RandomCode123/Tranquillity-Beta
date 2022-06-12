@@ -1,86 +1,86 @@
 {
-	"normalIdentifier": [
-		{
-			"global": {
-				"type":"codeBlock",
-				"tokenHiding": "True"
-			},
-			"{": {
-				"rangeDirection": "left",
-				"endSymbol": "}"
-			},
-			";": {
-				"rangeDirection": "left"
-			}
-		}, 
-		{
-			"global": {
-				"type": "sentence",
-				"rangeDirection": "right"
-			},
-			"import ": {},
-			"class ": {}, "func": {},
-			"while ": {}, "if ": {}, "elif ": {}, "else ": {},
-			"var ": {}, "return ": {}, "break ": {}
-		},
-		{
-			"=": {
-				"type": "sentence",
-				"rangeDirection": "bothSides"
-			}
-		},
-		{
-			"(": {
-				"type": "codeBlock",
-				"endSymbol": ")",
-				"tokenHiding": "True"
-			}	
-		},
-		{
-			"global":{
-				"type": "sentence",
-				"rangeDirection": "bothSides"
-			},
-			" and ": {}, " or ": {}, 
-			"!": { 
-				"rangeDirection": "right" 
-			},
-			"==": {}, ">": {}, "<": {}, ">=": {}, 
-			"<=": {}
-		},
-		{
-			"global": {
-				"type": "sentence",
-				"rangeDirection": "bothSides"
-			},
-			"<-": {}, "->": {}, " as ":{}
-		},
-		{
-			"**": {
-				"type": "sentence",
-				"rangeDirection": "bothSides"
-			}
-		},
-		{
-			"global": {
-				"type": "sentence",
-				"rangeDirection": "bothSides"
-			},
-			"*": {}, "/": {}
-		},
-		{
-			"global": {
-				"type": "sentence",
-				"rangeDirection": "bothSides"
-			},
-			"+": {}, "-": {}
-		}
-	],
-	"additional": {
-		"global": {
-			"rangeDirection": "left",
-			"tokenHiding": "True"
-		},
-		"}": {}, ")": {}
-	}
+    "normalIdentifier": [
+        {
+            "global": {
+                "type":"codeBlock",
+                "tokenHiding": "True"
+            },
+            "{": {
+                "rangeDirection": "left",
+                "endSymbol": "}"
+            },
+            ";": {
+                "rangeDirection": "left"
+            }
+        }, 
+        {
+            "global": {
+                "type": "sentence",
+                "rangeDirection": "right"
+            },
+            "import ": {},
+            "class ": {}, "func": {},
+            "while ": {}, "if ": {}, "elif ": {}, "else ": {},
+            "var ": {}, "return ": {}, "break ": {}
+        },
+        {
+            "=": {
+                "type": "sentence",
+                "rangeDirection": "bothSides"
+            }
+        },
+        {
+            "(": {
+                "type": "codeBlock",
+                "endSymbol": ")",
+                "tokenHiding": "True"
+            }	
+        },
+        {
+            "global":{
+                "type": "sentence",
+                "rangeDirection": "bothSides"
+            },
+            " and ": {}, " or ": {}, 
+            "!": { 
+                "rangeDirection": "right" 
+            },
+            "==": {}, ">": {}, "<": {}, ">=": {}, 
+            "<=": {}
+        },
+        {
+            "global": {
+                "type": "sentence",
+                "rangeDirection": "bothSides"
+            },
+            "<-": {}, "->": {}, " as ":{}
+        },
+        {
+            "**": {
+                "type": "sentence",
+                "rangeDirection": "bothSides"
+            }
+        },
+        {
+            "global": {
+                "type": "sentence",
+                "rangeDirection": "bothSides"
+            },
+            "*": {}, "/": {}
+        },
+        {
+            "global": {
+                "type": "sentence",
+                "rangeDirection": "bothSides"
+            },
+            "+": {}, "-": {}
+        }
+    ],
+    "additional": {
+        "global": {
+            "rangeDirection": "left",
+            "tokenHiding": "True"
+        },
+        "}": {}, ")": {}
+    }
 }
