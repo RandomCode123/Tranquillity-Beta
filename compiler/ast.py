@@ -41,36 +41,18 @@ class markToken:
     Find the location of the specified Token.
     This is equivalent to marking the Token.
     """
-    def __init__(self, string, targetString):
-        self.string           = string
-        self.targetString     = targetString
+    def __init__(self, syntaxInfo, code):
+        self.syntaxInfo     = string
+        self.code           = targetString
 
-        self.position         = [] # Location of token
+        self.tokenList = []
     
     def find(self):
-        stringMode      = False 
-        targetStringPos = 0
-
-        for i in range(len(self.string)):
-            # Enter string mode.
-            # In string mode, no specified token is recognized.
-            if self.string[i] == '"' or self.string[i] == '\'':
-                if stringMode == False:
-                    stringMode = self.string[i] 
-                elif self.string[i] == stringMode: 
-                    stringMode = False
-            # Find the token and mark it if it's not in string mode.
-            if stringMode == False and self.targetString[targetStringPos] == self.string[i]: 
-                for j in range(len(self.targetString)):
-                    if self.targetString[j] != self.string[i+j]:
-                        i += j
-                        break
-                self.position = [i, i+len(self.targetString)] # Mark the Token
-                break
+        ...
 
     def execution(self):
         self.find()
-        return self.position
+        return self.tokenList 
 
 class astCreation:
     """
@@ -86,20 +68,6 @@ class astCreation:
         self.syntaxInfo = syntaxInfo
 
         self.mainAst       = Tree()
-        self.endSymbolList = None
-
-        # Token
-        self.tokenType      = None
-        self.tokenHiding    = None
-        self.rangeDirection = None
-        self.endSymbol      = None
-
-        self.frontmostIdentifierPos = [len(self.sourceCode)-1]
-        self.endSymbolIdentifierPos = None
-        self.frontmostIdentifier    = None
-
-        self.substitutionList       = {}
-        self.substitutionListLength = 0
 
     def execution(self):
         #self.checkResourceIntegrity()
