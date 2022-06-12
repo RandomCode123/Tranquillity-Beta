@@ -48,7 +48,7 @@ class markToken:
         self.tokenList = []
     
     def find(self):
-        ...
+        
 
     def execution(self):
         self.find()
@@ -68,6 +68,14 @@ class astCreation:
         self.syntaxInfo = syntaxInfo
 
         self.mainAst       = Tree()
+
+    def selectPriority(self):
+        tokenList = None
+        for i in self.sytnaxInfo["normalIdentifier"]:
+            i["additional"] = self.syntaxInfo["additional"]
+            tokenList = markToken(i, self.sourceCode).execution()
+
+            # <--
 
     def execution(self):
         #self.checkResourceIntegrity()
