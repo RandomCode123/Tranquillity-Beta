@@ -36,25 +36,7 @@ def showTree(mainTree):
         print(id(i), end='')
     print("\n"+'='*20)
 
-class markToken:
-    """
-    Find the location of the specified Token.
-    This is equivalent to marking the Token.
-    """
-    def __init__(self, syntaxInfo, code):
-        self.syntaxInfo     = string
-        self.code           = targetString
-
-        self.tokenList = []
-    
-    def find(self):
-        
-
-    def execution(self):
-        self.find()
-        return self.tokenList 
-
-class astCreation:
+class AstCreation:
     """
     * Creation of a preliminary AST structure *
     
@@ -81,6 +63,29 @@ class astCreation:
         #self.checkResourceIntegrity()
         self.getToken()
 
+class MarkToken:
+    """
+    Find the location of the specified Token.
+    This is equivalent to marking the Token.
+    """
+    def __init__(self, syntaxInfo, code):
+        self.syntaxInfo     = string
+        self.code           = targetString
+
+        self.tokenList = []
+
+    def find(self):
+        ...
+
+    def execution(self):
+        self.find()
+        return self.tokenList
+
+def Hurtree:
+    """
+    """
+    def __init__(self):
+        ...
 
 """
 def getToken(self):
