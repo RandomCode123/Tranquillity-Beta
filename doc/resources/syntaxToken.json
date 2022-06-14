@@ -2,8 +2,8 @@
     "normalIdentifier": [
         {
             "global": {
-                "type":"codeBlock",
-                "tokenHiding": "True"
+                "tokenType":"codeBlock",
+                "hideSymbol": "True"
             },
             "{": {
                 "rangeDirection": "left",
@@ -15,7 +15,7 @@
         }, 
         {
             "global": {
-                "type": "sentence",
+                "tokenType": "sentence",
                 "rangeDirection": "right"
             },
             "import ": {},
@@ -25,20 +25,20 @@
         },
         {
             "=": {
-                "type": "sentence",
+                "tokenType": "sentence",
                 "rangeDirection": "bothSides"
             }
         },
         {
             "(": {
-                "type": "codeBlock",
+                "tokenType": "codeBlock",
                 "endSymbol": ")",
-                "tokenHiding": "True"
+                "hideSymbol": "True"
             }	
         },
         {
             "global":{
-                "type": "sentence",
+                "tokenType": "sentence",
                 "rangeDirection": "bothSides"
             },
             " and ": {}, " or ": {}, 
@@ -50,27 +50,27 @@
         },
         {
             "global": {
-                "type": "sentence",
+                "tokenType": "sentence",
                 "rangeDirection": "bothSides"
             },
             "<-": {}, "->": {}, " as ":{}
         },
         {
             "**": {
-                "type": "sentence",
+                "tokenType": "sentence",
                 "rangeDirection": "bothSides"
             }
         },
         {
             "global": {
-                "type": "sentence",
+                "tokenType": "sentence",
                 "rangeDirection": "bothSides"
             },
             "*": {}, "/": {}
         },
         {
             "global": {
-                "type": "sentence",
+                "tokenType": "sentence",
                 "rangeDirection": "bothSides"
             },
             "+": {}, "-": {}
@@ -79,7 +79,7 @@
     "additional": {
         "global": {
             "rangeDirection": "left",
-            "tokenHiding": "True"
+            "hideSymbol": "True"
         },
         "}": {}, ")": {}
     }
