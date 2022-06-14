@@ -63,7 +63,7 @@ class SyntaxInfoProcessing:
     def execution(self):
         # Function execution
         self.taskAllocation()
-        self.
+        self.informationCompletion()
         return self.syntaxInfo
 
 class SourceCodeProcessing:
