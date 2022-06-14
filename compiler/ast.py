@@ -74,7 +74,6 @@ class MarkToken:
         self.tokenList = []
 
     def find(self):
-        print(self.syntaxInfoPriorityTable)
         pos = []
         for key in self.syntaxInfoPriorityTable.keys():
             for i in range(len(self.code)):
@@ -91,6 +90,7 @@ class MarkToken:
 
                     if found == True: pos.append([key, i])
                     i += l - 1
+
         print(pos)
 
     def execution(self):
@@ -122,6 +122,7 @@ class Hurtree:
         for i in self.syntaxInfo["normalIdentifier"]:
             print(i)
             MarkToken(i, self.syntaxInfo["additional"], code).execution()
+            break
 
     def execution(self):
         self.prioritySort()
