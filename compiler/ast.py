@@ -66,15 +66,32 @@ class MarkToken:
     Find the location of the specified Token.
     This is equivalent to marking the Token.
     """
-    def __init__(self, syntaxInfoPriorityTable, syntaxInfoAdditionalTable code):
-        self.syntaxInfoPriorityTable     = synatxInfoPriorityInfo
+    def __init__(self, syntaxInfoPriorityTable, syntaxInfoAdditionalTable, code):
+        self.syntaxInfoPriorityTable     = syntaxInfoPriorityTable
         self.syntaxInfoAdditionalTable   = syntaxInfoAdditionalTable
         self.code                        = code
 
         self.tokenList = []
 
     def find(self):
-        ...
+        print(self.syntaxInfoPriorityTable)
+        pos = []
+        for key in self.syntaxInfoPriorityTable.keys():
+            for i in range(len(self.code)):
+                if self.code[i] == key[0]:
+                    found = True
+                    for l in range(len(key)):
+                        try:
+                            if key[l] != self.code[i+l]:
+                                found = False
+                                break
+                        except:
+                            found = False
+                            break
+
+                    if found == True: pos.append([key, i])
+                    i += l - 1
+        print(pos)
 
     def execution(self):
         self.find()
