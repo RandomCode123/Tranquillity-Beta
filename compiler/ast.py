@@ -1,5 +1,3 @@
-import sys
-
 class Tree:
     def __init__(self):
         # The code contained in the tree structure

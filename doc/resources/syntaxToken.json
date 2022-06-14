@@ -2,14 +2,15 @@
     "normalIdentifier": [
         {
             "global": {
-                "tokenType":"codeBlock",
                 "hideSymbol": "True"
             },
             "{": {
+		"tokenType": "codeBlock",
                 "rangeDirection": "left",
                 "endSymbol": "}"
             },
             ";": {
+		"tokenType": "sentence",
                 "rangeDirection": "left"
             }
         }, 
@@ -32,6 +33,7 @@
         {
             "(": {
                 "tokenType": "codeBlock",
+		"rangeDirection": "right",
                 "endSymbol": ")",
                 "hideSymbol": "True"
             }	

@@ -1,3 +1,7 @@
+from sys import exit as EXIT
+
+import copy
+
 from compiler.ast import *
 from compiler.bytecodeCreation import *
 
@@ -30,7 +34,7 @@ class SyntaxInfoProcessing:
                 self.processedSyntaxInfo["normalIdentifier"].append(self.currentlyIdentifierTable)
         except:
             print("OSError: Lack of resource integrity.")
-            sys.exit(0)
+            EXIT(0)
 
     def publicInfoProcessing(self):
         try:
@@ -45,7 +49,7 @@ class SyntaxInfoProcessing:
                             self.currentlyIdentifierTable[l][i] = self.tableGlobalInfomation[i]
         except:
             print("OSError: Lack of resource integrity.")
-            sys.exit(0)
+            EXIT(0)
 
 
     def informationCompletion(self):
@@ -56,9 +60,24 @@ class SyntaxInfoProcessing:
         Complete it with Syntax Information allowed attributes,
         That is, set default values for allowed attributes.
         """
+        newSyntaxInfo = copy.deepcopy(self.syntaxInfo)
+        normalIdentifierPos = 0
         for i in self.syntaxInfo["normalIdentifier"]:
             for l in i.keys():
-                print(i, l)
+                if "tokenType" in i[l] and "rangeDirection" in i[l]:
+                    if i[l]["tokenType"] == "codeBlock":
+                        if "endSymbol" not in i[l]:
+                            print(l)
+                            print("OSError--: Lack of resource intrgrity.")
+                            EXIT(0)
+                    if "hideSymbol" not in i[l]:
+                        newSyntaxInfo["normalIdentifier"][normalIdentifierPos]["hideSymbol"] = "False"
+                else:
+                    print("OSError$: Lack of resource integrity.")
+                    EXIT(0)
+            normalIdentifierPos += 1
+
+        print(newSyntaxInfo)
 
     def execution(self):
         # Function execution

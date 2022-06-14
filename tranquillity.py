@@ -1,5 +1,7 @@
+from os import name as SYSTEM_TYPE
+from sys import exit as EXIT
+from sys import argv as ARGV
 from json import loads
-import os, sys
 
 import compiler
 import interpreter
@@ -7,8 +9,8 @@ import interpreter
 class Tranquillity(object):
     def __init__(self):
         # Definition and declaration of variables
-        self.osType         = os.name # Computer system type
-        self.argvList       = sys.argv # Command parameter list
+        self.osType         = SYSTEM_TYPE # Computer system type
+        self.argvList       = ARGV # Command parameter list
         self.helpFileNormal = True # Integrity of external resources
         self.cmdInfo        = None # Command parameter information
         self.syntaxInfo     = None # Syntax information
@@ -32,7 +34,7 @@ class Tranquillity(object):
 
         if self.helpFileNormal == False:
             print("OSError5: Lack of integrity of external resources.")
-            sys.exit(0)
+            EXIT(0)
     def argvAnalysis(self):
         with open("./run.ty", "rt") as f: 
             self.sourceCode = f.read()
