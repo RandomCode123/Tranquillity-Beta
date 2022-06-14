@@ -66,9 +66,10 @@ class MarkToken:
     Find the location of the specified Token.
     This is equivalent to marking the Token.
     """
-    def __init__(self, syntaxInfo, code):
-        self.syntaxInfo     = string
-        self.code           = targetString
+    def __init__(self, syntaxInfoPriorityTable, syntaxInfoAdditionalTable code):
+        self.syntaxInfoPriorityTable     = synatxInfoPriorityInfo
+        self.syntaxInfoAdditionalTable   = syntaxInfoAdditionalTable
+        self.code                        = code
 
         self.tokenList = []
 
@@ -96,11 +97,14 @@ class Hurtree:
     def __init__(self, sourceCode, syntaxInfo):
         self.sourceCode = sourceCode
         self.syntaxInfo = syntaxInfo
+
+        self.ast        = Tree()
     
     def prioritySort(self):
+        code = self.sourceCode
         for i in self.syntaxInfo["normalIdentifier"]:
-            # print(i)
-            ...
+            print(i)
+            MarkToken(i, self.syntaxInfo["additional"], code).execution()
 
     def execution(self):
         self.prioritySort()

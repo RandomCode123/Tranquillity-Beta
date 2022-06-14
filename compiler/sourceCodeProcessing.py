@@ -67,7 +67,6 @@ class SyntaxInfoProcessing:
                 if "tokenType" in i[l] and "rangeDirection" in i[l]:
                     if i[l]["tokenType"] == "codeBlock":
                         if "endSymbol" not in i[l]:
-                            print(l)
                             print("OSError--: Lack of resource intrgrity.")
                             EXIT(0)
                     if "hideSymbol" not in i[l]:
@@ -77,7 +76,7 @@ class SyntaxInfoProcessing:
                     EXIT(0)
             normalIdentifierPos += 1
 
-        print(newSyntaxInfo)
+        self.syntaxInfo = newSyntaxInfo
 
     def execution(self):
         # Function execution
