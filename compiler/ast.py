@@ -81,61 +81,27 @@ class MarkToken:
         self.find()
         return self.tokenList
 
-def Hurtree:
+class Hurtree:
     """
-    """
-    def __init__(self):
-        ...
-
-"""
-def getToken(self):
-        # print("0:", self.syntaxInfo["normalIdentifier"][0])
-        print(33)
-        codeToBeProcessed      = self.sourceCode
-        for i in self.syntaxInfo["normalIdentifier"]:
-            while codeToBeProcessed != '':
-                for l in i.keys():
-                    pos = markToken(codeToBeProcessed, l).execution()
-
-                    # If it cannot be found, the loop is restarted.
-                    # The meaning is to find the identifier in the identifier table of the same priority
-                    if pos == []: continue
-                    # Find the top identifier in the code position in the same priority table
-                    print("pos:", pos[0], self.frontmostIdentifierPos[0])
-                    if pos[0] <= self.frontmostIdentifierPos[0]:
-                        self.frontmostIdentifier    = l
-                        self.frontmostIdentifierPos = pos
-
-                        try:
-                            # Get identifier information
-                            self.tokenType      = i[l]["type"]
-                            self.tokenHiding    = i[l]["tokenHiding"]
-                            if "endSymbol" in i[l]:
-                                self.endSymbol  = i[l]["endSymbol"]
-                                # If there is an endsymbol attribute,
-                                # then mark the position of endsymbol.
-                                self.endSymbolIdentifierPos = \
-                                    markToken(codeToBeProcessed, self.endSymbol).execution()
-                            self.rangeDirection = i[l]["rangeDirection"]
-                        except:
-                            print("OSError: Lack of integrity of external resources.")
-                            sys.exit(0)
-
-                # Tag dependent spanning Tree
-                self.buildAST()
-                # Reload the code to be parsed
-                codeToBeProcessed = self.sourceCode
-                
-                print('='*20)
-            break
-
-    def buildAST(self):
-        print("uh:", self.sourceCode[0:self.frontmostIdentifierPos[0]])
-        print("info:",self.endSymbolIdentifierPos)
-        if self.endSymbolIdentifierPos != None:
-            self.sourceCode = self.sourceCode[self.endSymbolIdentifierPos[-1]:-1]
-        else:
-            self.sourceCode = self.sourceCode[self.frontmostIdentifierPos[-1]:-1]
-        print("---\n"+self.sourceCode+"\n---")
+    * Ast partial boot *
     
-"""
+    (The following excerpt is from the Tranquility-Beta document.)
+    Essentially, hurtree analysis only uses some characteristics 
+    wing excerpt is from the tranquility beta document
+    brought by token priority to analyze code morphology.
+    Syntax information provides the attributes and priority of 
+    the token, as well as some other additional attributes,
+    and these attributes can help support hurtree's lexical 
+    analyzer to parse code lexical and generate corresponding 
+    abstract syntax trees.
+    """
+    def __init__(self, sourceCode, syntaxInfo):
+        self.sourceCode = sourceCode
+        self.syntaxInfo = syntaxInfo
+    
+    def prioritySort(self):
+        for i in self.syntaxInfo["normalIdentifier"]:
+            print(i)
+
+    def execution(self):
+        self.prioritySort()
