@@ -101,7 +101,9 @@ class Hurtree:
     
     def prioritySort(self):
         for i in self.syntaxInfo["normalIdentifier"]:
-            print(i)
+            # print(i)
+            ...
 
     def execution(self):
         self.prioritySort()
+

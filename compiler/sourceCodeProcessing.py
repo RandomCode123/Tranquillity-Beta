@@ -6,8 +6,10 @@ class SyntaxInfoProcessing:
     * Parsing JSON information of symbolInfo *
 
     Parse the concise symbolinfo written by users into information that can be used directly.
-    The Tranquility-Beta version has documentation.
-    You can read the documentation, so I won't repeat it here
+    The Tranquility-Beta version has documentation..
+    You can read the documentation, so I won't repeat it here.
+
+    At this time, Syntax Information v1.0-pre version is used.
     """
     def __init__(self, syntaxInfo):
         self.syntaxInfo          = syntaxInfo
@@ -45,9 +47,23 @@ class SyntaxInfoProcessing:
             print("OSError: Lack of resource integrity.")
             sys.exit(0)
 
+
+    def informationCompletion(self):
+        """
+        * Complete syntax information *
+        In order to facilitate subsequent direct use,
+        complete the token attribute of Syntax Information.
+        Complete it with Syntax Information allowed attributes,
+        That is, set default values for allowed attributes.
+        """
+        for i in self.syntaxInfo["normalIdentifier"]:
+            for l in i.keys():
+                print(i, l)
+
     def execution(self):
         # Function execution
         self.taskAllocation()
+        self.
         return self.syntaxInfo
 
 class SourceCodeProcessing:
