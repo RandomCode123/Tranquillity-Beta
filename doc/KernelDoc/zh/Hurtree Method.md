@@ -25,7 +25,7 @@ Syntax Information 中每个<u>**标签(Tag)**</u><sup><a href="https://baike.ba
 - ## hideSymbol:
     该属性表示所属标签的标签名是否在抽象语法树中被隐藏，即是否将该标签的解析结果直接插入上一级分支. 该属性为**可设标签**. 该属性有<u>**True**</u><sup><a href="https://baike.baidu.com/item/%E5%B8%83%E5%B0%94%E5%80%BC" target="_blank">[7]</a></sup>和<u>**False**</u><sup><a href="https://baike.baidu.com/item/%E5%B8%83%E5%B0%94%E5%80%BC" target="_blank">[8]</a></sup>两种可设值.<br>
 - ## endSymbol:
-    该属性表示所属标签的typeToken属性为codeBlock时的结束符. 该属性比较多变，若所属标签的typeToken属性为codeBlock，该属性为**必要标签**；但若所属标签的typeToken属性为snetence时，改属性为**可选标签**. 改属性的可设值为用户自定义.
+    该属性表示所属标签的typeToken属性为codeBlock时的结束符. 该属性比较多变，若所属标签的typeToken属性为codeBlock，该属性为**必要标签**；但若所属标签的typeToken属性为snetence时，改属性为**可选标签**，但是此时无论是否设置，都不会被理会. 该属性的可设值为用户自定义.
 <br><br>
 
 # 词法分析
