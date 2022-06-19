@@ -46,16 +46,18 @@ class AstCreation:
     Then, it is parsed step by step through the token tag.
     Gradually improve ast from overall to detailed.
     """
-    def __init__(self, sourceCode, syntaxInfo, tokenList):
+    def __init__(self, sourceCode, tokenList):
         self.sourceCode = sourceCode
-        self.syntaxInfo = syntaxInfo
         self.tokenList  = tokenList
 
-        self.AST = Tree()
+        self.AST                 = Tree()
+        self.processingCodeTable = {}
+
+    def getProcessingCode(self):
+        ...
 
     def execution(self):
-        #self.checkResourceIntegrity()
-        self.getToken()
+        ...
 
 class MarkToken:
     """
@@ -83,7 +85,7 @@ class MarkToken:
                             found = False
                             break
 
-                    if found == True: self.tokenList.append([key, i])
+                    if found == True: self.tokenList.append([key, i, i+len(key), self.syntaxInfoPriorityTable[key]])
                     i += l - 1
 
     def sort(self, pos):
@@ -135,11 +137,10 @@ class Hurtree:
             print(i)
             tokenPosList = MarkToken(i, self.syntaxInfo["additional"], code).execution()
             print(tokenPosList)
-            AST          = AstCreation(code, ).execution()
-            showTree(AST)
+            # AST          = AstCreation(code, tokenPosList).execution()
+            # showTree(AST)
 
             break # <--
 
     def execution(self):
         self.prioritySort()
-
