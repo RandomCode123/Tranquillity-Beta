@@ -53,7 +53,7 @@ class AstCreation:
         tokenList = None
         for i in self.sytnaxInfo["normalIdentifier"]:
             i["additional"] = self.syntaxInfo["additional"]
-            tokenList = markToken(i, self.sourceCode).execution()
+            tokenList = MarkToken(i, self.sourceCode).execution()
 
             # <--
 
