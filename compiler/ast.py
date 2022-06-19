@@ -92,6 +92,23 @@ class MarkToken:
                     i += l - 1
 
         print(pos)
+    def sort(self):
+        if(len(num)<=1):
+            return num
+        mid = int(len(num)/2)
+        leftList, rightList = self.sort(num[:mid]), self.sort(num[mid:])
+
+        result = []; i = 0; j = 0
+        while i < len(leftList) and j < len(rightList):
+            if rightList[j][1] < leftList[i][1]:
+                result.append(rightList[j])
+                j += 1
+            else:
+                result.append(leftList[i])
+                i += 1
+                
+        result += llist[i:]+rlist[j:]
+        return result
 
     def execution(self):
         self.find()
