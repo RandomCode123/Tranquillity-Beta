@@ -1,3 +1,6 @@
+from lib2to3.pgen2 import token
+
+
 class Tree:
     def __init__(self):
         # The code contained in the tree structure
@@ -43,19 +46,12 @@ class AstCreation:
     Then, it is parsed step by step through the token tag.
     Gradually improve ast from overall to detailed.
     """
-    def __init__(self, sourceCode, syntaxInfo):
+    def __init__(self, sourceCode, syntaxInfo, tokenList):
         self.sourceCode = sourceCode
         self.syntaxInfo = syntaxInfo
+        self.tokenList  = tokenList
 
-        self.mainAst       = Tree()
-
-    def selectPriority(self):
-        tokenList = None
-        for i in self.sytnaxInfo["normalIdentifier"]:
-            i["additional"] = self.syntaxInfo["additional"]
-            tokenList = MarkToken(i, self.sourceCode).execution()
-
-            # <--
+        self.AST = Tree()
 
     def execution(self):
         #self.checkResourceIntegrity()
@@ -74,7 +70,6 @@ class MarkToken:
         self.tokenList = []
 
     def find(self):
-        pos = []
         for key in self.syntaxInfoPriorityTable.keys():
             for i in range(len(self.code)):
                 if self.code[i] == key[0]:
@@ -88,15 +83,14 @@ class MarkToken:
                             found = False
                             break
 
-                    if found == True: pos.append([key, i])
+                    if found == True: self.tokenList.append([key, i])
                     i += l - 1
 
-        print(pos)
-    def sort(self):
-        if(len(num)<=1):
-            return num
-        mid = int(len(num)/2)
-        leftList, rightList = self.sort(num[:mid]), self.sort(num[mid:])
+    def sort(self, pos):
+        if(len(pos)<=1):
+            return pos
+        mid = int(len(pos)/2)
+        leftList, rightList = self.sort(pos[:mid]), self.sort(pos[mid:])
 
         result = []; i = 0; j = 0
         while i < len(leftList) and j < len(rightList):
@@ -107,11 +101,12 @@ class MarkToken:
                 result.append(leftList[i])
                 i += 1
                 
-        result += llist[i:]+rlist[j:]
+        result += leftList[i:]+rightList[j:]
         return result
 
     def execution(self):
         self.find()
+        self.tokenList = self.sort(self.tokenList)
         return self.tokenList
 
 class Hurtree:
@@ -138,8 +133,12 @@ class Hurtree:
         code = self.sourceCode
         for i in self.syntaxInfo["normalIdentifier"]:
             print(i)
-            MarkToken(i, self.syntaxInfo["additional"], code).execution()
-            break
+            tokenPosList = MarkToken(i, self.syntaxInfo["additional"], code).execution()
+            print(tokenPosList)
+            AST          = AstCreation(code, ).execution()
+            showTree(AST)
+
+            break # <--
 
     def execution(self):
         self.prioritySort()
