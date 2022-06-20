@@ -24,10 +24,10 @@ class Tranquillity(object):
 
     def resourcesIntegrity(self):
         try:
-            with open("./doc/resources/cmd.info", "rt") as f:
+            with open("./resources/cmd.info", "rt") as f:
                 self.cmdInfo = f.read()
 
-            with open("./doc/resources/syntaxToken.json") as f:
+            with open("./resources/syntaxToken.json") as f:
                 self.syntaxInfo = loads(f.read())
         except:
             self.helpFileNormal = False
