@@ -37,28 +37,6 @@ def showTree(mainTree):
         print(id(i), end='')
     print("\n"+'='*20)
 
-class AstCreation:
-    """
-    * Creation of a preliminary AST structure *
-    
-    Parse the source code into AST.
-    Token the source code through the token information.
-    Then, it is parsed step by step through the token tag.
-    Gradually improve ast from overall to detailed.
-    """
-    def __init__(self, sourceCode, tokenList):
-        self.sourceCode = sourceCode
-        self.tokenList  = tokenList
-
-        self.AST                 = Tree()
-        self.processingCodeTable = {}
-
-    def getProcessingCode(self):
-        ...
-
-    def execution(self):
-        ...
-
 class MarkToken:
     """
     Find the location of the specified Token.
@@ -111,6 +89,32 @@ class MarkToken:
         self.tokenList = self.sort(self.tokenList)
         return self.tokenList
 
+class AstCreation:
+    """
+    * Creation of a preliminary AST structure *
+
+    Parse the source code into AST.
+    Token the source code through the token information.
+    Then, it is parsed step by step through the token tag.
+    Gradually improve ast from overall to detailed.
+    """
+    def __init__(self, sourceCode, tokenList):
+        self.sourceCode = sourceCode
+        self.tokenList  = tokenList
+
+        self.AST                 = Tree()
+        self.processingCodeTable = {}
+
+    def getProcessingCode(self):
+        for i in self.tokenList:
+            ... # <--
+
+    def ASTCreation(self):
+        MarkToken()
+
+    def execution(self):
+        ...
+
 class Hurtree:
     """
     * Ast partial boot *
@@ -137,10 +141,11 @@ class Hurtree:
             print(i)
             tokenPosList = MarkToken(i, self.syntaxInfo["additional"], code).execution()
             print(tokenPosList)
-            # AST          = AstCreation(code, tokenPosList).execution()
+            AST          = AstCreation(code, tokenPosList).execution()
             # showTree(AST)
 
             break # <--
 
     def execution(self):
         self.prioritySort()
+
