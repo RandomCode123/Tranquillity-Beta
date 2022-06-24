@@ -7,6 +7,13 @@ import compiler
 import interpreter
 
 class Tranquillity(object):
+    """
+    * Main method of Tranquility *
+    Lexical grammatical analysis of the compiler adopts the self created 
+    Hurtree lexical/grammatical analysis method.
+
+    Number: 0111426e6232786b5a573467636d463061573875
+    """
     def __init__(self):
         # Definition and declaration of variables
         self.osType         = SYSTEM_TYPE # Computer system type

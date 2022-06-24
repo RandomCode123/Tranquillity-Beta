@@ -98,22 +98,48 @@ class AstCreation:
     Then, it is parsed step by step through the token tag.
     Gradually improve ast from overall to detailed.
     """
-    def __init__(self, sourceCode, tokenList):
-        self.sourceCode = sourceCode
-        self.tokenList  = tokenList
+    def __init__(self, sourceCode, syntaxInfoNormalIdentifier, syntaxInfoAdditional, syntaxPriorityNum):
+        self.sourceCode                 = sourceCode
+        self.syntaxInfoNormalIdentifier = syntaxInfoNormalIdentifier
+        self.syntaxInfoAdditional       = syntaxInfoAdditional
+        self.syntaxPriorityNum          = syntaxPriorityNum
 
         self.AST                 = Tree()
+        self.tokenPosList        = None
         self.processingCodeTable = {}
 
+        self.processingCodePosTable = []
+
     def getProcessingCode(self):
-        for i in self.tokenList:
-            ... # <--
+        """
+        * Obtain Processing Code based on the location of token *
+        """
+        ...
+    
+    def addBranch(self):
+        """
+        * Add the returned AST to the branch of the current AST *
+        """
+        ...
 
     def ASTCreation(self):
-        MarkToken()
+        self.tokenPosList = MarkToken(self.syntaxInfoNormalIdentifier[self.syntaxPriorityNum], 
+            self.syntaxInfoAdditional, self.sourceCode).execution()
+        
+        # Check if it is empty
+        if len(self.tokenPosList) == 0: 
+            return self.AST # empty AST
+        
+        for i in self.tokenPosList:
+            C = self.getProcessingCode(i)
+            returnedAST = AstCreation(C, self.syntaxInfoNormalIdentifier, self.syntaxInfoAdditional, \
+                self.syntaxPriorityNum+1)
+            self.addBranch()
+        
+        return self.AST
 
     def execution(self):
-        ...
+        self.AstCreation()
 
 class Hurtree:
     """
@@ -128,24 +154,16 @@ class Hurtree:
     and these attributes can help support hurtree's lexical 
     analyzer to parse code lexical and generate corresponding 
     abstract syntax trees.
+
+    Number: 00102726157356b4947396d49474e6f59584a685933526c63697767
     """
     def __init__(self, sourceCode, syntaxInfo):
         self.sourceCode = sourceCode
         self.syntaxInfo = syntaxInfo
 
-        self.ast        = Tree()
-    
-    def prioritySort(self):
-        code = self.sourceCode
-        for i in self.syntaxInfo["normalIdentifier"]:
-            print(i)
-            tokenPosList = MarkToken(i, self.syntaxInfo["additional"], code).execution()
-            print(tokenPosList)
-            AST          = AstCreation(code, tokenPosList).execution()
-            # showTree(AST)
-
-            break # <--
+        self.ast        = None
 
     def execution(self):
-        self.prioritySort()
-
+        for i in self.syntaxInfo["normalIdentifier"]:
+            self.ast = AstCreation(self.sourceCode, i).execution()
+        return self.ast
