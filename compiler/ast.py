@@ -99,7 +99,7 @@ class AstCreation:
         """
         * Obtain Processing Code based on the location of token *
         """
-        ...
+        print(self.tokenPosList)
     
     def addBranch(self):
         """
@@ -116,7 +116,7 @@ class AstCreation:
             return self.AST # empty AST
         
         for i in self.tokenPosList:
-            C = self.getProcessingCode(i)
+            C = self.getProcessingCode()
             returnedAST = AstCreation(C, self.syntaxInfoNormalIdentifier, self.syntaxInfoAdditional, \
                 self.syntaxPriorityNum+1)
             self.addBranch()
@@ -124,7 +124,7 @@ class AstCreation:
         return self.AST
 
     def execution(self):
-        self.AstCreation()
+        self.ASTCreation()
 
 class Hurtree:
     """
@@ -149,6 +149,6 @@ class Hurtree:
         self.ast        = None
 
     def execution(self):
-        for i in self.syntaxInfo["normalIdentifier"]:
-            self.ast = AstCreation(self.sourceCode, i).execution()
+        self.ast = AstCreation(self.sourceCode, \
+            self.syntaxInfo["normalIdentifier"], self.syntaxInfo["additional"], 0).execution()
         return self.ast
