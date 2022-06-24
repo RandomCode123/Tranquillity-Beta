@@ -93,7 +93,7 @@ class AstCreation:
         self.tokenPosList        = None
         self.processingCodeTable = {}
 
-        self.processingCodePosTable = []
+        self.processingCodePosTable = [0, 0]
 
     def getProcessingCode(self, tokenPos):
         """
@@ -105,14 +105,29 @@ class AstCreation:
             NO.3 Eelement: The left position of token
             NO.4 Eelement: The information of token
         """
-        if tokenPos[3]["tokenType"] == "sentence":
-            ...
-        elif tokenPos[3]["typeType"] == "codeBlock":
-            ...
+        C = "" # Processing Code
+
+        if tokenPos[3]["rangeDirection"] == "left":
+            self.processingCodePosTable[0] += 0
+            self.processingCodePosTable[1] += tokenPos[2]
+            C = self.sourceCode[self.processingCodePosTable[0]+0 : \
+                self.processingCodePosTable[1]+tokenPos[1]]
+        print(C) 
     
     def addBranch(self):
         """
         * Add the returned AST to the branch of the current AST *
+        """
+        """
+        newSourceCode = ''
+        print(self.processingCodePosTable)
+        for i in range(len(self.sourceCode)):
+            if not self.processingCodePosTable[0] <= i < self.processingCodePosTable[1]:
+                print(self.sourceCode[i], end='')
+                newSourceCode += self.sourceCode[i]
+        print()
+        self.sourceCode = newSourceCode
+        self.processingCodePosTable = [0, 0]
         """
         ...
 
@@ -125,6 +140,7 @@ class AstCreation:
             return self.AST # empty AST
         
         for i in self.tokenPosList:
+            print(i[1], self.sourceCode[i[1]])
             C = self.getProcessingCode(i)
             returnedAST = AstCreation(C, self.syntaxInfoNormalIdentifier, self.syntaxInfoAdditional, \
                 self.syntaxPriorityNum+1)
