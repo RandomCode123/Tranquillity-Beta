@@ -95,11 +95,20 @@ class AstCreation:
 
         self.processingCodePosTable = []
 
-    def getProcessingCode(self):
+    def getProcessingCode(self, tokenPos):
         """
         * Obtain Processing Code based on the location of token *
+
+        tokenPos:
+            NO.1 Eelement: The name of token
+            NO.2 Eelement: The right position of token
+            NO.3 Eelement: The left position of token
+            NO.4 Eelement: The information of token
         """
-        print(self.tokenPosList)
+        if tokenPos[3]["tokenType"] == "sentence":
+            ...
+        elif tokenPos[3]["typeType"] == "codeBlock":
+            ...
     
     def addBranch(self):
         """
@@ -116,7 +125,7 @@ class AstCreation:
             return self.AST # empty AST
         
         for i in self.tokenPosList:
-            C = self.getProcessingCode()
+            C = self.getProcessingCode(i)
             returnedAST = AstCreation(C, self.syntaxInfoNormalIdentifier, self.syntaxInfoAdditional, \
                 self.syntaxPriorityNum+1)
             self.addBranch()
