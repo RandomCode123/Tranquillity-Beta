@@ -1,4 +1,5 @@
-from sys import exit as EXIT
+from lib2to3.pgen2 import token
+
 
 class Tree:
     def __init__(self):
@@ -92,42 +93,43 @@ class AstCreation:
         self.tokenPosList        = None
         self.processingCodeTable = {}
 
-        self.referencePos = 0
+        self.processingCodePosTable = [0, 0]
 
     def getProcessingCode(self, tokenPos):
         """
         * Obtain Processing Code based on the location of token *
 
         tokenPos:
-            NO.1 Eelement(Index number 0): The name of token
+            NO.1 Eelement: The name of token
             NO.2 Eelement: The right position of token
             NO.3 Eelement: The left position of token
             NO.4 Eelement: The information of token
         """
         C = "" # Processing Code
 
-        print(tokenPos)
-        if tokenPos[3]["tokenType"] == "sentence":
-            C = self.sourceCode[self.referencePos:tokenPos[1]]
-            self.referencePos = tokenPos[2]
-            print("C:", C)
-        elif tokenPos[3]["tokenType"] == "codeBlock":
-            symbol = 0
-            for p in range(tokenPos[2], len(self.sourceCode)):
-                if self.sourceCode[p] == tokenPos[0]: symbol += 1
-                elif self.sourceCode[p] == tokenPos[3]["endSymbol"]:
-                    if symbol == 0: break
-                    else: symbol -= 1
-            if not symbol == 0: 
-                print("SyntaxError: !!!")
-                EXIT(0)
-            
-            C = self.sourceCode[self.referencePos:tokenPos[1]]
-            C1 = self.sourceCode[tokenPos[2]:p]
-            self.referencePos = p + 2 
-
-            print("C:", C)
-            print("C1:", C1)
+        if tokenPos[3]["rangeDirection"] == "left":
+            self.processingCodePosTable[0] += 0
+            self.processingCodePosTable[1] += tokenPos[2]
+            C = self.sourceCode[self.processingCodePosTable[0]+0 : \
+                self.processingCodePosTable[1]+tokenPos[1]]
+        print(C) 
+    
+    def addBranch(self):
+        """
+        * Add the returned AST to the branch of the current AST *
+        """
+        """
+        newSourceCode = ''
+        print(self.processingCodePosTable)
+        for i in range(len(self.sourceCode)):
+            if not self.processingCodePosTable[0] <= i < self.processingCodePosTable[1]:
+                print(self.sourceCode[i], end='')
+                newSourceCode += self.sourceCode[i]
+        print()
+        self.sourceCode = newSourceCode
+        self.processingCodePosTable = [0, 0]
+        """
+        ...
 
     def ASTCreation(self):
         self.tokenPosList = MarkToken(self.syntaxInfoNormalIdentifier[self.syntaxPriorityNum], 
@@ -138,7 +140,11 @@ class AstCreation:
             return self.AST # empty AST
         
         for i in self.tokenPosList:
-            self.getProcessingCode(i)
+            print(i[1], self.sourceCode[i[1]])
+            C = self.getProcessingCode(i)
+            returnedAST = AstCreation(C, self.syntaxInfoNormalIdentifier, self.syntaxInfoAdditional, \
+                self.syntaxPriorityNum+1)
+            self.addBranch()
         
         return self.AST
 
