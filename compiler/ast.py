@@ -34,6 +34,7 @@ class MarkToken:
         self.tokenList = []
 
     def find(self):
+        print(self.syntaxInfoPriorityTable)
         for key in self.syntaxInfoPriorityTable.keys():
             for i in range(len(self.code)):
                 if self.code[i] == key[0]:
@@ -133,12 +134,7 @@ class AstCreation:
         self.tokenPosList = MarkToken(self.syntaxInfoNormalIdentifier[self.syntaxPriorityNum], 
             self.syntaxInfoAdditional, self.sourceCode).execution()
         
-        # Check if it is empty
-        if len(self.tokenPosList) == 0: 
-            return self.AST # empty AST
-        
-        for i in self.tokenPosList:
-            self.getProcessingCode(i)
+        print(self.tokenPosList)
         
         return self.AST
 
