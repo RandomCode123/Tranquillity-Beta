@@ -92,7 +92,7 @@ class AstCreation:
         self.tokenPosList        = None
         self.processingCodeTable = {}
 
-        self.referencePosTable   = [0, 0]
+        self.referencePos = 0
 
     def getProcessingCode(self, tokenPos):
         """
@@ -122,7 +122,7 @@ class AstCreation:
                 print("SyntaxError: !!!")
                 EXIT(0)
             
-            C  = self.sourceCode[self.referencePos:tokenPos[1]]
+            C = self.sourceCode[self.referencePos:tokenPos[1]]
             C1 = self.sourceCode[tokenPos[2]:p]
             self.referencePos = p + 2 
 
