@@ -1,3 +1,4 @@
+import string
 from sys import exit as EXIT
 
 class Tree:
@@ -34,22 +35,43 @@ class MarkToken:
         self.tokenList = []
 
     def find(self):
-        print(self.syntaxInfoPriorityTable)
-        for key in self.syntaxInfoPriorityTable.keys():
-            for i in range(len(self.code)):
-                if self.code[i] == key[0]:
-                    found = True
-                    for l in range(len(key)):
+        for token in self.syntaxInfoPriorityTable.keys():
+            stringMode = False
+            p = 0 # Position
+            while p <= len(self.code):
+                if self.code[p] == '\'' or self.code[p] == '"':
+                    if stringMode == False: stringMode = self.code[p]
+                    else: stringMode = False
+                
+                found = False
+                if self.code[p] == token[0] and stringMode == False:
+                    for i in range(len(token)):
                         try:
-                            if key[l] != self.code[i+l]:
-                                found = False
-                                break
-                        except:
-                            found = False
-                            break
+                            if not token[i] == self.code[p]: break
+                        except: break
+                        p += i
+                    # Because if the traversal token is incomplete, 
+                    # the value of I will certainly not be the token length -1
+                    if i == len(token)-1: found = True
 
-                    if found == True: self.tokenList.append([key, i, i+len(key), self.syntaxInfoPriorityTable[key]])
-                    i += l - 1
+                    if self.syntaxInfoPriorityTable[token]["tokenType"] == "codeBlock" and found == True:
+                        endSymbol = self.syntaxInfoPriorityTable[token]["endSymbol"]
+                        symbolNum = 0 # Duplicate same Token (tokenType is codeBlock)
+                        if self.code[p] == token[0]:
+                            for i in range(len(token)):
+                                try:
+                                    if not token[i] == self.code[p]: break
+                                except: break
+                                p += i
+                            if i == len(token)-1: symbolNum += 1
+                        
+                        if self.code[p] == endSymbol[0]:
+                            for i in range(len(endSymbol)):
+                                try:
+                                    if not endSymbol[i] == self.code[p]: break
+                                except: break
+                                p += i
+                            if i == len(endSymbol)-1: symbolNum -= 1
 
     def sort(self, pos):
         if(len(pos)<=1):
@@ -70,6 +92,7 @@ class MarkToken:
         return result
 
     def execution(self):
+        print("hhh:", self.syntaxInfoPriorityTable)
         self.find()
         self.tokenList = self.sort(self.tokenList)
         return self.tokenList
