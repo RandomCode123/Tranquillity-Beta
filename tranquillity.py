@@ -25,10 +25,6 @@ class Tranquillity(object):
         self.sourceCode     = None # Source code to be compiled.
         self.byteCode       = None # Bytecode generated after source code compilation.
 
-        # Function execution
-        self.resourcesIntegrity()
-        self.argvAnalysis()
-
     def resourcesIntegrity(self):
         try:
             with open("./resources/cmd.info", "rt") as f:
@@ -46,8 +42,13 @@ class Tranquillity(object):
         with open("./run.ty", "rt") as f: 
             self.sourceCode = f.read()
         self.sourceCode += ' '
-  
+        
         self.bytecode   = compiler.Compiler(self.sourceCode, self.syntaxInfo).execution()
+    
+    def execution(self):
+        # Function execution
+        self.resourcesIntegrity()
+        self.argvAnalysis()
 
 # For later running on the command line .ty program preparation
 """
@@ -58,4 +59,4 @@ if len(argvList) == 1:
 """
 
 if __name__ == "__main__":
-    Tranquillity()
+    Tranquillity().execution()
